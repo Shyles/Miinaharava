@@ -26,7 +26,7 @@ public class TyhjaRuutuTest {
     
     @Before
     public void setUp() {
-        tyhjaruutu = new TyhjaRuutu();
+        tyhjaruutu = new TyhjaRuutu(new GameBoard(), 1,1);
     }
     
     @After

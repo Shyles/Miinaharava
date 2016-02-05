@@ -34,7 +34,7 @@ public class MiinaRuutuTest {
 
     @Before
     public void setUp() {
-        miinaruutu = new MiinaRuutu();
+        miinaruutu = new MiinaRuutu(new GameBoard(),1,1);
     }
 
     @After

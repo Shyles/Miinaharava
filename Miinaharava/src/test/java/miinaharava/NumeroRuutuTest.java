@@ -25,7 +25,7 @@ public class NumeroRuutuTest {
 
     @Before
     public void setUp() {
-        numeroruutu = new NumeroRuutu();
+        numeroruutu = new NumeroRuutu(new GameBoard(), 1,1);
     }
 
     @After

@@ -26,7 +26,7 @@ public class RuutuTest {
     
     @Before
     public void setUp() {
-        ruutu = new Ruutu();
+        ruutu = new Ruutu(new GameBoard(), 1,1);
     }
     
     @After
