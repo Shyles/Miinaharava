@@ -1,23 +1,40 @@
-
 package userinterface;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import miinaharava.GameBoard;
 import miinaharava.gameObjects.Ruutu;
 
-
 public class MinesweeperUI extends javax.swing.JFrame {
-    
+
     private GameBoard gb = new GameBoard();
-    
+
     public MinesweeperUI() {
+        gb.setUpNewTestGameBoard();
         initComponents();
+//        JButton nappi = new JButton();
+//        nappi.setText("WOLOLOO");
+//        nappi.addActionListener(new ActionListener() {
+//
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                System.out.println("NOOOOOO");
+//            }
+//        });
+//        nappi.addKeyListener(null);
+//        lautaPaneeli.add(nappi);
         addGameBoard();
     }
-    
-        private void addGameBoard() {
-            for (int i = 0; i < gb.getBoxAmount(); i++) {
-                RuutuButton button = new RuutuButton(gb.getRuutuInLocation(i, i));
+
+    private void addGameBoard() {
+        for (int col = 0; col < gb.getCols(); col++) {
+            for (int row = 0; row < gb.getRows(); row++) {
+                RuutuButton button = new RuutuButton(gb.getRuutuInLocation(row, col));
+                button.setText("Col" + col + " row" + row);
+                lautaPaneeli.add(button);
             }
+        }
     }
 
     /**
@@ -29,32 +46,22 @@ public class MinesweeperUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        lautaPaneeli = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 266, Short.MAX_VALUE)
-        );
+        lautaPaneeli.setMinimumSize(new java.awt.Dimension(500, 500));
+        lautaPaneeli.setLayout(new java.awt.GridBagLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lautaPaneeli, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 34, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(lautaPaneeli, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, Short.MAX_VALUE)
         );
 
         pack();
@@ -96,8 +103,7 @@ public class MinesweeperUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel lautaPaneeli;
     // End of variables declaration//GEN-END:variables
-
 
 }

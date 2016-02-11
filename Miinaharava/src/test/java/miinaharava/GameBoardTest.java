@@ -40,15 +40,15 @@ public class GameBoardTest {
 
     }
 
-    private void setUpNewGameBoard(GameBoard gb) {
-        try {
-            gb.newBoard(36, 6);
-            gb.randomizeMineLocations();
-            gb.createEmptiesAndNumbers();
-        } catch (Exception e) {
-            System.out.println("Failed to set up a new board");
-        }
-    }
+//    private void setUpNewGameBoard(GameBoard gb) {
+//        try {
+//            gb.newBoard(36, 6);
+//            gb.randomizeMineLocations();
+//            gb.createEmptiesAndNumbers();
+//        } catch (Exception e) {
+//            System.out.println("Failed to set up a new board");
+//        }
+//    }
 
     @After
     public void tearDown() {
@@ -143,7 +143,7 @@ public class GameBoardTest {
 
     @Test
     public void getRuutuInLocationReturnsCorrectRuutu() {
-        setUpNewGameBoard(gameboard);
+        gameboard.setUpNewTestGameBoard();
         for (int col = 0; col < gameboard.getCols(); col++) {
             for (int row = 0; row < gameboard.getRows(); row++) {     
                 Ruutu methodRetrieved = gameboard.getRuutuInLocation(row, col);

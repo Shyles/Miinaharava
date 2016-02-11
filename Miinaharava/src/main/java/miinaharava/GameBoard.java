@@ -3,7 +3,6 @@ package miinaharava;
 import miinaharava.gameObjects.MiinaRuutu;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -12,7 +11,7 @@ import miinaharava.gameObjects.Ruutu;
 public class GameBoard {
 
     private Ruutu[][] gameboard;
-    private Integer[] availableAmountsArray = {};
+    private Integer[] availableAmountsArray = {36};
     private Set<Integer> availableAmounts;
     private int mineAmount;
     private int boxAmount;
@@ -79,7 +78,7 @@ public class GameBoard {
                     System.out.println("Ei miina " + eiMiina);
                     eiMiina++;
                 }
-                
+
             }
         }
     }
@@ -101,6 +100,16 @@ public class GameBoard {
             }
         }
         return neighbours;
+    }
+
+    public void setUpNewTestGameBoard() {
+        try {
+            newBoard(36, 6);
+            randomizeMineLocations();
+            createEmptiesAndNumbers();
+        } catch (Exception e) {
+            System.out.println("Failed to set up a new board");
+        }
     }
 
     public void setMineAmount(int mineAmount) {
@@ -127,7 +136,7 @@ public class GameBoard {
     public int getBoxAmount() {
         return boxAmount;
     }
-    
+
     public Ruutu getRuutuInLocation(int row, int col) {
         return gameboard[col][row];
     }
@@ -144,8 +153,5 @@ public class GameBoard {
     public double getRows() {
         return rows;
     }
-    
-    
-    
 
 }
