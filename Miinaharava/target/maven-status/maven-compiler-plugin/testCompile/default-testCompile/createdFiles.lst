@@ -1,2 +1,7 @@
-miinaharava\gameObjects\MiinaRuutuTest.class
+miinaharava\gameObjects\TyhjaRuutuTest.class
 miinaharava\gameObjects\RuutuTest.class
+miinaharava\GameBoardTest.class
+miinaharava\LogiikkaTest.class
+miinaharava\gameObjects\MiinaRuutuTest.class
+miinaharava\gameObjects\NumeroRuutuTest.class
+miinaharava\PerfectGameTest.class

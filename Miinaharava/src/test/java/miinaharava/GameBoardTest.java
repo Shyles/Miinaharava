@@ -1,14 +1,8 @@
 package miinaharava;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 import miinaharava.gameObjects.MiinaRuutu;
 import miinaharava.gameObjects.Ruutu;
 import java.util.ArrayList;
-import miinaharava.*;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -46,12 +40,13 @@ public class GameBoardTest {
 
     }
 
-    private void setUpGameBoard(GameBoard gb) {
+    private void setUpNewGameBoard(GameBoard gb) {
         try {
             gb.newBoard(36, 6);
             gb.randomizeMineLocations();
+            gb.createEmptiesAndNumbers();
         } catch (Exception e) {
-
+            System.out.println("Failed to set up a new board");
         }
     }
 
@@ -71,7 +66,7 @@ public class GameBoardTest {
             gameboard.newBoard(10000000, 5);
             Assert.fail();
         } catch (Exception e) {
-            String expected = "Invalid argument. Currently supports integers " + gameboard.availableAmounts.toString();
+            String expected = "Invalid argument. Currently supports integers " + gameboard.getAvailableAmounts().toString();
             assertEquals("Exception message must be correct", expected, e.getMessage());
         }
     }
@@ -95,15 +90,15 @@ public class GameBoardTest {
     @Test
     public void getNeighboursReturnsCorrectNeigbhourAmount() {
         GameBoard gb = new GameBoard();
-        Ruutu[][] arr = getArrayFilledWithRuutu(gb, 6 , 6);     
+        Ruutu[][] arr = getArrayFilledWithRuutu(gb, 6, 6);
         gb.setGameboard(arr);
-        
+
         int supposedToBeEight = gb.getNeighbours(gb.getGameboard()[1][1]).size();
         int supposedToBeFive = gb.getNeighbours(gb.getGameboard()[1][0]).size();
         int supposedToBeThree = gb.getNeighbours(gb.getGameboard()[5][5]).size();
         int[] output = {supposedToBeEight, supposedToBeFive, supposedToBeThree};
-        int[] expected = {8,5,3};
-        
+        int[] expected = {8, 5, 3};
+
         assertArrayEquals(expected, output);
     }
 
@@ -111,7 +106,7 @@ public class GameBoardTest {
         Ruutu[][] arr = new Ruutu[rows][cols];
         for (int j = 0; j < cols; j++) {
             for (int i = 0; i < rows; i++) {
-                
+
                 arr[i][j] = new Ruutu(gb, i, j);
             }
         }
@@ -123,17 +118,17 @@ public class GameBoardTest {
         Ruutu[][] arr = getArrayFilledWithRuutu(gameboard, 6, 6);
         gameboard.setGameboard(arr);
         try {
-        gameboard.getNeighbours(gameboard.getGameboard()[0][0]);
+            gameboard.getNeighbours(gameboard.getGameboard()[0][0]);
         } catch (ArrayIndexOutOfBoundsException e) {
             Assert.fail("Caught array out of bounds exception");
         }
     }
-    
+
     @Test
     public void getNeighboursReturnsCorrectNeighbours() {
         Ruutu[][] arr = getArrayFilledWithRuutu(gameboard, 6, 6);
         gameboard.setGameboard(arr);
-        ArrayList<Ruutu> expectedList = new ArrayList<Ruutu>();
+        ArrayList<Ruutu> expectedList = new ArrayList<>();
         for (int col = 0; col < 3; col++) {
             for (int row = 0; row < 3; row++) {
                 if (row == 1 && col == 1) {
@@ -144,12 +139,21 @@ public class GameBoardTest {
         }
         ArrayList<Ruutu> outputList = gameboard.getNeighbours(gameboard.getGameboard()[1][1]);
         assertEquals(expectedList, outputList);
-        
-    
     }
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+
+    @Test
+    public void getRuutuInLocationReturnsCorrectRuutu() {
+        setUpNewGameBoard(gameboard);
+        for (int col = 0; col < gameboard.getCols(); col++) {
+            for (int row = 0; row < gameboard.getRows(); row++) {     
+                Ruutu methodRetrieved = gameboard.getRuutuInLocation(row, col);
+                Ruutu expected = gameboard.getGameboard()[(int) col][(int) row];
+
+                if (!methodRetrieved.equals(expected)) {
+                    Assert.fail("Ruutu retrieved with getRuutuInLocation didn't match with ruutu in location column:" + col + " row:" + row);
+                }
+            }
+        }
+
+    }
 }

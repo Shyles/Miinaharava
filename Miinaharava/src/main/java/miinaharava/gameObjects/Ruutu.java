@@ -51,6 +51,20 @@ public class Ruutu {
         return row;
     }
     
+    @Override
+    public boolean equals(Object compareTo) {
+        boolean result = false;
+        if (compareTo instanceof Ruutu) {
+            Ruutu otherRuutu = (Ruutu) compareTo;
+            if (this.flagged == otherRuutu.flagged && this.opened == otherRuutu.opened) {
+                if (this.row == otherRuutu.row && this.col == otherRuutu.col) {
+                    result = true;
+                }
+            }
+        }
+        return result;
+    }
+    
     
     
 }

@@ -16,6 +16,8 @@ public class GameBoard {
     private Set<Integer> availableAmounts;
     private int mineAmount;
     private int boxAmount;
+    private double rows;
+    private double cols;
 
     public GameBoard() {
     }
@@ -23,8 +25,9 @@ public class GameBoard {
     //Creates the board with randomized mine locations
     public void newBoard(int boxAmount, int mineAmount) throws Exception {
         if (availableAmounts.contains(boxAmount)) {
-            this.boxAmount = boxAmount;
             this.mineAmount = mineAmount;
+            this.boxAmount = boxAmount;
+            setUpRowsAndCols();
             gameboard = new Ruutu[6][6];
             createBoard(boxAmount);
         } else {
@@ -61,12 +64,22 @@ public class GameBoard {
     }
 
     public void createEmptiesAndNumbers() {
-        for (Ruutu[] ruutuArr : gameboard) {
-            for (Ruutu ruutu : ruutuArr) {
+        int miina = 1;
+        int eiMiina = 1;
+        for (int col = 0; col < this.cols; col++) {
+            for (int row = 0; row < this.rows; row++) {
+                Ruutu ruutu = gameboard[col][row];
                 if (ruutu instanceof MiinaRuutu) {
+                    System.out.println("Miina" + miina);
+                    miina++;
                     continue;
+                } else {
+                    //TODO add howtocreatenumbers
+                    gameboard[col][row] = new Ruutu(this, row, col);
+                    System.out.println("Ei miina " + eiMiina);
+                    eiMiina++;
                 }
-
+                
             }
         }
     }
@@ -118,6 +131,20 @@ public class GameBoard {
     public Ruutu getRuutuInLocation(int row, int col) {
         return gameboard[col][row];
     }
+
+    private void setUpRowsAndCols() {
+        this.rows = Math.sqrt(boxAmount);
+        this.cols = Math.sqrt(boxAmount);
+    }
+
+    public double getCols() {
+        return cols;
+    }
+
+    public double getRows() {
+        return rows;
+    }
+    
     
     
 
