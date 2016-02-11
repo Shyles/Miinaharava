@@ -3,9 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package miinaharava;
+package miinaharava.gameObjects;
 
+import miinaharava.gameObjects.MiinaRuutu;
+import miinaharava.gameObjects.Ruutu;
 import junit.framework.Assert;
+import miinaharava.GameBoard;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

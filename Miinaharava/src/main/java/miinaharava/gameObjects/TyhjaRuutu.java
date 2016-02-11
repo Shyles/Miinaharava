@@ -1,5 +1,7 @@
 
-package miinaharava;
+package miinaharava.gameObjects;
+
+import miinaharava.GameBoard;
 
 public class TyhjaRuutu extends Ruutu {
 

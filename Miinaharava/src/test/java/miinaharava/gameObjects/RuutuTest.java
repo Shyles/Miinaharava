@@ -1,6 +1,8 @@
 
-package miinaharava;
+package miinaharava.gameObjects;
 
+import miinaharava.GameBoard;
+import miinaharava.gameObjects.Ruutu;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

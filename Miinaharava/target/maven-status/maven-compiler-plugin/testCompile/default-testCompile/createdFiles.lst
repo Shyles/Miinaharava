@@ -1,4 +1,2 @@
-miinaharava\GameBoardTest.class
-miinaharava\MiinaRuutuTest.class
-miinaharava\RuutuTest.class
-miinaharava\LogiikkaTest.class
+miinaharava\gameObjects\MiinaRuutuTest.class
+miinaharava\gameObjects\RuutuTest.class

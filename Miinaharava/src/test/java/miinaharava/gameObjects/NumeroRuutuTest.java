@@ -1,6 +1,9 @@
-package miinaharava;
+package miinaharava.gameObjects;
 
+import miinaharava.gameObjects.NumeroRuutu;
+import miinaharava.gameObjects.Ruutu;
 import junit.framework.Assert;
+import miinaharava.GameBoard;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -8,37 +11,36 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+public class NumeroRuutuTest {
 
-public class TyhjaRuutuTest {
-    
-    public TyhjaRuutu tyhjaruutu;
-    
-    public TyhjaRuutuTest() {
+    public NumeroRuutu numeroruutu;
+
+    public NumeroRuutuTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
-        tyhjaruutu = new TyhjaRuutu(new GameBoard(), 1,1);
+        numeroruutu = new NumeroRuutu(new GameBoard(), 1,1);
     }
-    
+
     @After
     public void tearDown() {
     }
 
     @Test
     public void inheritsRuutu() {
-         if (!(tyhjaruutu instanceof Ruutu)) {
-            Assert.fail("TyhjaRuutu isn't inherited!");
-        } else if (tyhjaruutu.isFlagged() != false) {
+        if (!(numeroruutu instanceof Ruutu)) {
+            Assert.fail("Ruutu isn't inherited!");
+        } else if (numeroruutu.isFlagged() != false) {
             Assert.fail("Flagged isn't false!");
-        } 
+        }
     }
 }

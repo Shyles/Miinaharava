@@ -1,19 +1,21 @@
 package miinaharava;
 
+import miinaharava.gameObjects.MiinaRuutu;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
-import miinaharava.Ruutu;
+import miinaharava.gameObjects.Ruutu;
 
 public class GameBoard {
 
     private Ruutu[][] gameboard;
     private Integer[] availableAmountsArray = {};
-    public Set<Integer> availableAmounts;
-    public int mineAmount;
+    private Set<Integer> availableAmounts;
+    private int mineAmount;
+    private int boxAmount;
 
     public GameBoard() {
     }
@@ -21,7 +23,8 @@ public class GameBoard {
     //Creates the board with randomized mine locations
     public void newBoard(int boxAmount, int mineAmount) throws Exception {
         if (availableAmounts.contains(boxAmount)) {
-            mineAmount = mineAmount;
+            this.boxAmount = boxAmount;
+            this.mineAmount = mineAmount;
             gameboard = new Ruutu[6][6];
             createBoard(boxAmount);
         } else {
@@ -103,5 +106,19 @@ public class GameBoard {
         gameboard[col][row].revealUnderneath();
         return 0;
     }
+
+    public int getMineAmount() {
+        return mineAmount;
+    }
+
+    public int getBoxAmount() {
+        return boxAmount;
+    }
+    
+    public Ruutu getRuutuInLocation(int row, int col) {
+        return gameboard[col][row];
+    }
+    
+    
 
 }

@@ -5,6 +5,8 @@ package miinaharava;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import miinaharava.gameObjects.MiinaRuutu;
+import miinaharava.gameObjects.Ruutu;
 import java.util.ArrayList;
 import miinaharava.*;
 import java.util.Arrays;
