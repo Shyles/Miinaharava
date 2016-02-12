@@ -8,3 +8,12 @@
 
 5.2 4h
 * Tein metodeja GameBoardille ja lisäsin Ruudun tietoutta omasta sijainnistaan. Testasin GameBoardin metodit semikattavasti.
+
+8.2 2h
+* Aloitin pajassa UIn
+
+10.2 4h
+* Jatkoin UIta, lisäsin muutaman metodin ja testin UIta varten.
+
+12.2 2h
+* Tein tarvittavat dokumentaatiot, päivitin muutamaa metodia.
