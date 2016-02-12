@@ -3,14 +3,16 @@ package miinaharava.gameObjects;
 
 import miinaharava.GameBoard;
 
-
+/**
+ * Luokka on yläkäsite Miina-, Tyhja- ja NumeroRuudulle. Kaikilla Ruudut tietävät sijaintinsa niihin liitetyssä GameBoardissa.
+ */
 public class Ruutu {
     
     private boolean flagged = false;
     private boolean opened = false;
     private int row;
     private int col;
-    private GameBoard gb;
+    protected GameBoard gb;
 
     public Ruutu(GameBoard gb, int row, int col) {
         this.gb = gb;
@@ -50,6 +52,8 @@ public class Ruutu {
     public int getRow() {
         return row;
     }
+    
+   
     
     @Override
     public boolean equals(Object compareTo) {

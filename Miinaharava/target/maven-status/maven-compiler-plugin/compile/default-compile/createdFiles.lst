@@ -1,10 +1,12 @@
 miinaharava\gameObjects\MiinaRuutu.class
 userinterface\MinesweeperUI.class
 miinaharava\GameBoard.class
+userinterface\RuutuButton$2.class
 miinaharava\Logiikka.class
 main\java\miinaharava2\Main.class
 miinaharava\gameObjects\NumeroRuutu.class
 miinaharava\gameObjects\Ruutu.class
 userinterface\MinesweeperUI$1.class
+userinterface\RuutuButton$1.class
 miinaharava\gameObjects\TyhjaRuutu.class
 userinterface\RuutuButton.class

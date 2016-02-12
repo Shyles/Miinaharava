@@ -1,10 +1,18 @@
 package userinterface;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 import miinaharava.GameBoard;
 import miinaharava.gameObjects.Ruutu;
+
+/**
+ * Pelin käyttöliittymä. 
+ */
 
 public class MinesweeperUI extends javax.swing.JFrame {
 
@@ -12,30 +20,28 @@ public class MinesweeperUI extends javax.swing.JFrame {
 
     public MinesweeperUI() {
         gb.setUpNewTestGameBoard();
-        initComponents();
-//        JButton nappi = new JButton();
-//        nappi.setText("WOLOLOO");
-//        nappi.addActionListener(new ActionListener() {
-//
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                System.out.println("NOOOOOO");
-//            }
-//        });
-//        nappi.addKeyListener(null);
-//        lautaPaneeli.add(nappi);
+        initComponents();        
         addGameBoard();
+        setPanelSize();
     }
 
     private void addGameBoard() {
+        lautaPaneeli.setLayout(new GridLayout((int) gb.getRows(), (int) gb.getCols(), 2, 2));
         for (int col = 0; col < gb.getCols(); col++) {
             for (int row = 0; row < gb.getRows(); row++) {
                 RuutuButton button = new RuutuButton(gb.getRuutuInLocation(row, col));
-                button.setText("Col" + col + " row" + row);
                 lautaPaneeli.add(button);
             }
         }
     }
+
+    private void setPanelSize() {
+        //todo
+        lautaPaneeli.setPreferredSize(new Dimension(500, 500));
+        lautaPaneeli.setBackground(Color.blue);
+        setSize(1000,1000);
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,17 +57,20 @@ public class MinesweeperUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lautaPaneeli.setMinimumSize(new java.awt.Dimension(500, 500));
-        lautaPaneeli.setLayout(new java.awt.GridBagLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lautaPaneeli, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(lautaPaneeli, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(419, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lautaPaneeli, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 164, Short.MAX_VALUE)
+                .addComponent(lautaPaneeli, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();

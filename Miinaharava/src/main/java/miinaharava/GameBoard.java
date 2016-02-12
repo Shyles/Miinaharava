@@ -7,21 +7,30 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 import miinaharava.gameObjects.Ruutu;
+import miinaharava.gameObjects.TyhjaRuutu;
+
+/**
+ * Luokka huolehtii miinaharavan kentästä pitäen yllä jäljellä olevien ei-MiinaRuutujen jäljellä olevaa määrää.
+ * Luokalla on tieto kentän koosta ja jokaisen Ruudun sijainnista. Tarjoaa myös työkalut uusien pöytien luomiseen.
+ */
 
 public class GameBoard {
 
     private Ruutu[][] gameboard;
     private Integer[] availableAmountsArray = {36};
     private Set<Integer> availableAmounts;
-    private int mineAmount;
-    private int boxAmount;
+    private Integer mineAmount;
+    private Integer boxAmount;
     private double rows;
     private double cols;
+    private int gameContinues;
 
     public GameBoard() {
     }
 
-    //Creates the board with randomized mine locations
+/**
+ * Luokka tarjoaa useita todennäköisyyslaskentaan tarvittavia metodeita.
+ */
     public void newBoard(int boxAmount, int mineAmount) throws Exception {
         if (availableAmounts.contains(boxAmount)) {
             this.mineAmount = mineAmount;
@@ -48,8 +57,14 @@ public class GameBoard {
         return availableAmounts;
     }
 
+    /**
+     * Sijoittaa mineAmount-määrän MiinaRuutuja GameBoardiin. Toimii vain tyhjälle laudalle.
+     * Ei tee mitään jos lauta, miinojen määrä tai ruutujen määrä on null.
+     */
     public void randomizeMineLocations() {
-        Random rand = new Random();
+        if (gameboard == null || mineAmount == null || boxAmount == null)  {
+        }
+            Random rand = new Random();
         int rows = gameboard.length;
         int cols = gameboard.length;
         for (int i = 0; i < mineAmount;) {
@@ -61,6 +76,10 @@ public class GameBoard {
             }
         }
     }
+    
+    /**
+     * Täyttää pelilaudan TyhjaRuuduilla ja NumeroRuuduilla loogisesti oikein.
+     */
 
     public void createEmptiesAndNumbers() {
         int miina = 1;
@@ -68,20 +87,19 @@ public class GameBoard {
         for (int col = 0; col < this.cols; col++) {
             for (int row = 0; row < this.rows; row++) {
                 Ruutu ruutu = gameboard[col][row];
-                if (ruutu instanceof MiinaRuutu) {
-                    System.out.println("Miina" + miina);
-                    miina++;
-                    continue;
-                } else {
+                if (ruutu instanceof MiinaRuutu) {continue;}
                     //TODO add howtocreatenumbers
-                    gameboard[col][row] = new Ruutu(this, row, col);
-                    System.out.println("Ei miina " + eiMiina);
-                    eiMiina++;
-                }
+                    gameboard[col][row] = new TyhjaRuutu(this, row, col);
 
             }
         }
     }
+    
+    /**
+     * Palauttaa Ruudun kaikki naapurit, määrä on 8, 5 tai 3 sijainnista riippuen.
+     * @param Ruutu jonka naapurit halutaan tietoon.
+     * @return ArrayList parametrin naapuriRuuduista.
+     */
 
     public ArrayList<Ruutu> getNeighbours(Ruutu ruutu) {
         ArrayList<Ruutu> neighbours = new ArrayList<Ruutu>();
@@ -103,6 +121,7 @@ public class GameBoard {
     }
 
     public void setUpNewTestGameBoard() {
+        setAvailableAmounts(availableAmountsArray);
         try {
             newBoard(36, 6);
             randomizeMineLocations();
@@ -125,7 +144,7 @@ public class GameBoard {
     }
 
     public int openRuutu(int col, int row) {
-        gameboard[col][row].revealUnderneath();
+        gameboard[row][col].revealUnderneath();
         return 0;
     }
 
@@ -154,4 +173,13 @@ public class GameBoard {
         return rows;
     }
 
+    public int getGameContinues() {
+        return gameContinues;
+    }
+
+    public void setGameContinues(int gameContinues) {
+        this.gameContinues = gameContinues;
+    }
+
+    
 }

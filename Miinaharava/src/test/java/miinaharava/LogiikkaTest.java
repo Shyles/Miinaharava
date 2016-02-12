@@ -2,6 +2,7 @@
 package miinaharava;
 
 import junit.framework.Assert;
+import miinaharava.gameObjects.MiinaRuutu;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -27,10 +28,16 @@ public class LogiikkaTest {
     @Before
     public void setUp() {
         logiikka = new Logiikka();
+        logiikka.currentBoard = new GameBoard();
+        logiikka.currentBoard.setUpNewTestGameBoard();
     }
     
     @After
     public void tearDown() {
+    }
+    
+    private void putMineInLocation(int col, int row) {
+        this.logiikka.currentBoard.getGameboard()[col][row] = new MiinaRuutu(this.logiikka.currentBoard, row, col);
     }
 
     
@@ -54,5 +61,15 @@ public class LogiikkaTest {
     public void winGameReturnsCorrectMessage() {
         String txt = "Won the game";
         assertEquals(txt, logiikka.winGame());
+    }
+    
+    @Test
+    public void openRuutuEndingGameStringIsCorrectIfMiinaIsOpened() {
+        int col = 1;
+        int row = 5;
+        putMineInLocation(col, row);
+        logiikka.open(col, row);
+        System.out.println(logiikka.currentBoard.getGameContinues());
+        assertEquals(logiikka.loseGame(), logiikka.gameEndingString);
     }
 }
