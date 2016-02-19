@@ -1,0 +1,1602 @@
+<html>
+<head>
+<style type='text/css'>
+html, body, div, span, p, blockquote, pre {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+
+body{
+	line-height: 1;
+	color: black;
+	background: white;
+	margin-left: 20px;
+}
+
+.src { 
+border: 1px solid #dddddd;
+padding-top: 10px;
+padding-right: 5px;
+padding-left: 5px;
+}
+
+
+.covered {background-color: #ddffdd}
+.uncovered {background-color: #ffdddd}
+.killed {background-color: #aaffaa}
+.survived {background-color: #ffaaaa}
+.uncertain {background-color: #dde7ef}
+.run_error {background-color: #dde7ef}
+.na {background-color: #eeeeee}
+.timed_out {background-color: #dde7ef}
+.non_viable {background-color: #aaffaa}
+.memory_error {background-color: #dde7ef}
+.not_started {background-color: #dde7ef; color : red}
+.no_coverage {background-color: #ffaaaa}
+
+
+.pop {outline:none; }
+.pop strong {line-height:30px;}
+.pop {text-decoration:none;}
+.pop span { z-index:10;display:none; padding:14px 20px; margin-top:-30px; margin-left:28px; width:800px; line-height:16px; word-wrap:break-word; }
+.pop:hover span{ display:inline; position:absolute; color:#111; border:1px solid #DCA; background:#fffAF0;}
+
+.pop span { border-radius:4px; -moz-border-radius: 4px; -webkit-border-radius: 4px; -moz-box-shadow: 5px 5px 8px #CCC; -webkit-box-shadow: 5px 5px 8px #CCC; box-shadow: 5px 5px 8px #CCC; }
+</style>
+
+</head>
+<body>
+
+
+<h1>Ruutu.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_1'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package fi.ola.tiles;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_2'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_3'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import fi.ola.logic.GameBoard;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_4'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.awt.Color;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_5'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_6'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_7'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Luokka on yl&#195;&#164;k&#195;&#164;site Miina-, Tyhja- ja NumeroRuudulle. Kaikilla Ruudut</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_8'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * tiet&#195;&#164;v&#195;&#164;t sijaintinsa niihin liitetyss&#195;&#164; GameBoardissa. Ruutu tiet&#195;&#164;&#195;&#164; my&#195;&#182;s onko</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_9'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * se aukaistu ja onko se liputettu. My&#195;&#182;s tieto mink&#195;&#164;laiseksi RuutuButtonin</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_10'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * nappi tulee sit&#195;&#164; painettaessa l&#195;&#182;ytyy Ruudusta.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_11'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_12'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>public class Ruutu {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_13'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_14'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    private boolean flagged = false;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_15'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    private boolean opened = false;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_16'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private int row;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_17'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private int col;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_18'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected GameBoard gb;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_19'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected Color color;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_20'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected String toBePrintedOnRuutuButton;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_21'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_22'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_23'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Konstruktori.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_24'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param gb P&#195;&#182;yt&#195;&#164; johon Ruutu on liitetty.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_25'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param row Ruudun rivi.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_26'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param col Ruudun kolumni.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_27'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_28'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    public Ruutu(GameBoard gb, int row, int col) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_29'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.gb = gb;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_30'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.row = row;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_31'/>
+31
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_31'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.col = col;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_32'/>
+32
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_32'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.color = Color.BLUE;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_33'/>
+33
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_33'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_34'/>
+34
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_34'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_35'/>
+35
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_35'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public boolean isFlagged() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_36'/>
+36
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_36'>1</a>
+<span>
+
+1. isFlagged : replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return flagged;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_37'/>
+37
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_37'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_38'/>
+38
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_38'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_39'/>
+39
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_39'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public void setFlagged(boolean flagged) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_40'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.flagged = flagged;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_41'/>
+41
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_41'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_42'/>
+42
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_42'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_43'/>
+43
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_43'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public void setOpened(boolean opened) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_44'/>
+44
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_44'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.opened = opened;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_45'/>
+45
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_45'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_46'/>
+46
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_46'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_47'/>
+47
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_47'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public boolean isOpened() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_48'/>
+48
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_48'>1</a>
+<span>
+
+1. isOpened : replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return opened;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_49'/>
+49
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_49'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_50'/>
+50
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_50'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_51'/>
+51
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_51'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_52'/>
+52
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_52'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Reveals the underneath of Ruutu and acts accordingly.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_53'/>
+53
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_53'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_54'/>
+54
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_54'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public void revealUnderneath() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_55'/>
+55
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_55'>1</a>
+<span>
+
+1. revealUnderneath : negated conditional &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (flagged) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_56'/>
+56
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_56'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            return;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_57'/>
+57
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_57'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_58'/>
+58
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_58'>1</a>
+<span>
+
+1. revealUnderneath : removed call to fi/ola/tiles/Ruutu::setOpened &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        setOpened(true);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_59'/>
+59
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_59'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_60'/>
+60
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_60'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_61'/>
+61
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_61'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public int getCol() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_62'/>
+62
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_62'>1</a>
+<span>
+
+1. getCol : replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return col;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_63'/>
+63
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_63'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_64'/>
+64
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_64'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_65'/>
+65
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_65'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public int getRow() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_66'/>
+66
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_66'>1</a>
+<span>
+
+1. getRow : replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return row;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_67'/>
+67
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_67'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_68'/>
+68
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_68'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_69'/>
+69
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_69'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_70'/>
+70
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_70'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public boolean equals(Object compareTo) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_71'/>
+71
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_71'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        boolean result = false;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_72'/>
+72
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_72'>1</a>
+<span>
+
+1. equals : negated conditional &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (compareTo instanceof Ruutu) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_73'/>
+73
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_73'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            Ruutu otherRuutu = (Ruutu) compareTo;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_74'/>
+74
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_74'>2</a>
+<span>
+
+1. equals : negated conditional &rarr; KILLED<br/>
+
+2. equals : negated conditional &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (this.flagged == otherRuutu.flagged &#38;&#38; this.opened == otherRuutu.opened) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_75'/>
+75
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_75'>2</a>
+<span>
+
+1. equals : negated conditional &rarr; KILLED<br/>
+
+2. equals : negated conditional &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                if (this.row == otherRuutu.row &#38;&#38; this.col == otherRuutu.col) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_76'/>
+76
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_76'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                    result = true;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_77'/>
+77
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_77'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>                }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_78'/>
+78
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_78'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_79'/>
+79
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_79'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_80'/>
+80
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_80'>1</a>
+<span>
+
+1. equals : replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return result;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_81'/>
+81
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_81'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_82'/>
+82
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_82'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_83'/>
+83
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_83'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public Color getColor() {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_84'/>
+84
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_84'>1</a>
+<span>
+
+1. getColor : mutated return of Object value for fi/ola/tiles/Ruutu::getColor to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE<br/>
+
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        return color;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_85'/>
+85
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_85'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_86'/>
+86
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_86'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_87'/>
+87
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_87'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public String getToBePrintedOnRuutuButton() {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_88'/>
+88
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_88'>1</a>
+<span>
+
+1. getToBePrintedOnRuutuButton : mutated return of Object value for fi/ola/tiles/Ruutu::getToBePrintedOnRuutuButton to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE<br/>
+
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        return toBePrintedOnRuutuButton;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_89'/>
+89
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_89'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_90'/>
+90
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_90'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_91'/>
+91
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_91'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public void setToBePrintedOnRuutuButton(String toBePrintedOnRuutuButton) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_92'/>
+92
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_92'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.toBePrintedOnRuutuButton = toBePrintedOnRuutuButton;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_93'/>
+93
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_93'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_94'/>
+94
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_94'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4c59e45e_95'/>
+95
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_95'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4c59e45e_36'>36</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_36'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>isFlagged<br/><b>Killed by : </b>fi.ola.tiles.NumeroRuutuTest.fi.ola.tiles.NumeroRuutuTest</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4c59e45e_48'>48</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_48'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>isOpened<br/><b>Killed by : </b>fi.ola.tiles.RuutuTest.fi.ola.tiles.RuutuTest</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4c59e45e_55'>55</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_55'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>revealUnderneath<br/><b>Killed by : </b>fi.ola.tiles.RuutuTest.fi.ola.tiles.RuutuTest</span></span> negated conditional &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4c59e45e_58'>58</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_58'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>revealUnderneath<br/><b>Killed by : </b>fi.ola.tiles.RuutuTest.fi.ola.tiles.RuutuTest</span></span> removed call to fi/ola/tiles/Ruutu::setOpened &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4c59e45e_62'>62</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_62'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getCol<br/><b>Killed by : </b>fi.ola.logic.GameBoardTest.fi.ola.logic.GameBoardTest</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4c59e45e_66'>66</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_66'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getRow<br/><b>Killed by : </b>fi.ola.logic.GameBoardTest.fi.ola.logic.GameBoardTest</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4c59e45e_72'>72</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_72'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>equals<br/><b>Killed by : </b>fi.ola.logic.GameBoardTest.fi.ola.logic.GameBoardTest</span></span> negated conditional &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4c59e45e_74'>74</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_74'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>equals<br/><b>Killed by : </b>fi.ola.logic.GameBoardTest.fi.ola.logic.GameBoardTest</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>equals<br/><b>Killed by : </b>fi.ola.logic.GameBoardTest.fi.ola.logic.GameBoardTest</span></span> negated conditional &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4c59e45e_75'>75</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_75'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>equals<br/><b>Killed by : </b>fi.ola.logic.GameBoardTest.fi.ola.logic.GameBoardTest</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>equals<br/><b>Killed by : </b>fi.ola.logic.GameBoardTest.fi.ola.logic.GameBoardTest</span></span> negated conditional &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4c59e45e_80'>80</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_80'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>equals<br/><b>Killed by : </b>fi.ola.logic.GameBoardTest.fi.ola.logic.GameBoardTest</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4c59e45e_84'>84</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_84'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getColor<br/><b>Killed by : </b>none</span></span> mutated return of Object value for fi/ola/tiles/Ruutu::getColor to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4c59e45e_88'>88</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4c59e45e_88'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getToBePrintedOnRuutuButton<br/><b>Killed by : </b>none</span></span> mutated return of Object value for fi/ola/tiles/Ruutu::getToBePrintedOnRuutuButton to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+
+<li class='mutator'>INCREMENTS_MUTATOR</li>
+
+<li class='mutator'>VOID_METHOD_CALL_MUTATOR</li>
+
+<li class='mutator'>RETURN_VALS_MUTATOR</li>
+
+<li class='mutator'>MATH_MUTATOR</li>
+
+<li class='mutator'>NEGATE_CONDITIONALS_MUTATOR</li>
+
+<li class='mutator'>INVERT_NEGS_MUTATOR</li>
+
+<li class='mutator'>CONDITIONALS_BOUNDARY_MUTATOR</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>fi.ola.logic.GameBoardTest.fi.ola.logic.GameBoardTest (65 ms)</li><li>fi.ola.tiles.NumeroRuutuTest.fi.ola.tiles.NumeroRuutuTest (0 ms)</li><li>fi.ola.tiles.MiinaRuutuTest.fi.ola.tiles.MiinaRuutuTest (1 ms)</li><li>fi.ola.logic.LogiikkaTest.fi.ola.logic.LogiikkaTest (2 ms)</li><li>fi.ola.tiles.RuutuTest.fi.ola.tiles.RuutuTest (1 ms)</li><li>fi.ola.tiles.TyhjaRuutuTest.fi.ola.tiles.TyhjaRuutuTest (0 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 1.1.4
+
+</body>
+</html>

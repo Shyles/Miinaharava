@@ -1,7 +1,7 @@
-miinaharava\gameObjects\TyhjaRuutuTest.class
-miinaharava\gameObjects\RuutuTest.class
-miinaharava\GameBoardTest.class
-miinaharava\LogiikkaTest.class
-miinaharava\gameObjects\MiinaRuutuTest.class
-miinaharava\gameObjects\NumeroRuutuTest.class
-miinaharava\PerfectGameTest.class
+fi\ola\logic\GameBoardTest.class
+fi\ola\tiles\RuutuTest.class
+fi\ola\tiles\NumeroRuutuTest.class
+fi\ola\logic\PerfectGameTest.class
+fi\ola\logic\LogiikkaTest.class
+fi\ola\tiles\MiinaRuutuTest.class
+fi\ola\tiles\TyhjaRuutuTest.class

@@ -37,7 +37,7 @@ public class GameBoardTest {
     @Before
     public void setUp() {
         gameboard = new GameBoard();
-        gameboard.setAvailableAmounts(availableAmounts);
+        gameboard.setAvailableAmountsFromArray(availableAmounts);
 
     }
 

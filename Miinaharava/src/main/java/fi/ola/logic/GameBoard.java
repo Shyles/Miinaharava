@@ -10,10 +10,10 @@ import fi.ola.tiles.Ruutu;
 import fi.ola.tiles.TyhjaRuutu;
 
 /**
- * Luokka huolehtii miinaharavan kentästä pitäen yllä jäljellä olevien ei-MiinaRuutujen jäljellä olevaa määrää.
- * Luokalla on tieto kentän koosta ja jokaisen Ruudun sijainnista. Tarjoaa myös työkalut uusien pöytien luomiseen.
+ * Luokka huolehtii miinaharavan kentästä pitäen yllä jäljellä olevien
+ * ei-MiinaRuutujen jäljellä olevaa määrää. Luokalla on tieto kentän koosta ja
+ * jokaisen Ruudun sijainnista. Tarjoaa myös työkalut uusien pöytien luomiseen.
  */
-
 public class GameBoard {
 
     private Ruutu[][] gameboard;
@@ -25,13 +25,21 @@ public class GameBoard {
     private double cols;
     private int gameContinues;
 
+    /**
+     * Ei tee mitään erikoista.
+     */
     public GameBoard() {
     }
 
-/**
- * Luokka tarjoaa useita todennäköisyyslaskentaan tarvittavia metodeita.
- */
-    public void newBoard(int boxAmount, int mineAmount) throws Exception {
+    /**
+     * Rakentaa uuden laudan.
+     *
+     * @param boxAmount Ruutujen määrä
+     * @param mineAmount MiinaRuutujen määrä
+     * 
+     * @throws RuntimeException Custom made.
+     */
+    public void newBoard(int boxAmount, int mineAmount) throws RuntimeException {
         if (availableAmounts.contains(boxAmount)) {
             this.mineAmount = mineAmount;
             this.boxAmount = boxAmount;
@@ -48,7 +56,11 @@ public class GameBoard {
         boxAmount = 36;
     }
 
-    public void setAvailableAmounts(Integer[] availableAmountsArray) {
+    /**
+     * Sets availableAmounts from given array.
+     * @param availableAmountsArray Array containing available amounts.
+     */
+    public void setAvailableAmountsFromArray(Integer[] availableAmountsArray) {
         this.availableAmountsArray = availableAmountsArray;
         this.availableAmounts = new HashSet(Arrays.asList(availableAmountsArray));
     }
@@ -58,13 +70,14 @@ public class GameBoard {
     }
 
     /**
-     * Sijoittaa mineAmount-määrän MiinaRuutuja GameBoardiin. Toimii vain tyhjälle laudalle.
-     * Ei tee mitään jos lauta, miinojen määrä tai ruutujen määrä on null.
+     * Sijoittaa mineAmount-määrän MiinaRuutuja GameBoardiin. Toimii vain
+     * tyhjälle laudalle. Ei tee mitään jos lauta, miinojen määrä tai ruutujen
+     * määrä on null.
      */
     public void randomizeMineLocations() {
-        if (gameboard == null || mineAmount == null || boxAmount == null)  {
-        }
-            Random rand = new Random();
+//        if (gameboard == null || mineAmount == null || boxAmount == null) {
+//        }
+        Random rand = new Random();
         int rows = gameboard.length;
         int cols = gameboard.length;
         for (int i = 0; i < mineAmount;) {
@@ -76,31 +89,33 @@ public class GameBoard {
             }
         }
     }
-    
+
     /**
      * Täyttää pelilaudan TyhjaRuuduilla ja NumeroRuuduilla loogisesti oikein.
      */
-
     public void createEmptiesAndNumbers() {
         int miina = 1;
         int eiMiina = 1;
         for (int col = 0; col < this.cols; col++) {
             for (int row = 0; row < this.rows; row++) {
                 Ruutu ruutu = gameboard[col][row];
-                if (ruutu instanceof MiinaRuutu) {continue;}
-                    //TODO add howtocreatenumbers
-                    gameboard[col][row] = new TyhjaRuutu(this, row, col);
+                if (ruutu instanceof MiinaRuutu) {
+                    continue;
+                }
+                //TODO add howtocreatenumbers
+                gameboard[col][row] = new TyhjaRuutu(this, row, col);
 
             }
         }
     }
-    
+
     /**
-     * Palauttaa Ruudun kaikki naapurit, määrä on 8, 5 tai 3 sijainnista riippuen.
-     * @param Ruutu jonka naapurit halutaan tietoon.
+     * Palauttaa Ruudun kaikki naapurit, määrä on 8, 5 tai 3 sijainnista
+     * riippuen.
+     *
+     * @param ruutu jonka naapurit halutaan tietoon.
      * @return ArrayList parametrin naapuriRuuduista.
      */
-
     public ArrayList<Ruutu> getNeighbours(Ruutu ruutu) {
         ArrayList<Ruutu> neighbours = new ArrayList<Ruutu>();
         int rowAmount = ruutu.getRow();
@@ -120,8 +135,11 @@ public class GameBoard {
         return neighbours;
     }
 
+    /**
+     * Kovakoodattu testipöydän rakentaminen.
+     */
     public void setUpNewTestGameBoard() {
-        setAvailableAmounts(availableAmountsArray);
+        setAvailableAmountsFromArray(availableAmountsArray);
         try {
             newBoard(36, 6);
             randomizeMineLocations();
@@ -143,6 +161,12 @@ public class GameBoard {
         return gameboard;
     }
 
+    /**
+     * Open Ruutu from a given location.
+     * @param col Kolumni.
+     * @param row Rivi.
+     * @return Palauttaa 0 jostain syystä... hmmm?
+     */
     public int openRuutu(int col, int row) {
         gameboard[row][col].revealUnderneath();
         return 0;
@@ -156,10 +180,19 @@ public class GameBoard {
         return boxAmount;
     }
 
+    /**
+     * Fetches Ruutu from a given location.
+     * @param row Rivi.
+     * @param col Kolumni.
+     * @return Ruutu in a given location.
+     */
     public Ruutu getRuutuInLocation(int row, int col) {
         return gameboard[col][row];
     }
 
+    /**
+     * Helper method for setting up rows and cols from given Ruutu amount.
+     */
     private void setUpRowsAndCols() {
         this.rows = Math.sqrt(boxAmount);
         this.cols = Math.sqrt(boxAmount);
@@ -181,5 +214,4 @@ public class GameBoard {
         this.gameContinues = gameContinues;
     }
 
-    
 }

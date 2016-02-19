@@ -1,10 +1,6 @@
 package fi.ola.minesweeper;
 
-
-
-
 import fi.ola.tiles.Ruutu;
-
 
 public class Main {
 
@@ -13,5 +9,5 @@ public class Main {
      */
     public static void main(String[] args) {
     }
-    
+
 }

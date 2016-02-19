@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="5.7">
+<file name="C:\Users\Olaml\Desktop\Koulu\Miinaharava\Miinaharava\src\main\java\fi\ola\logic\GameBoard.java">
+<error line="1" severity="error" message="Tiedoston pituus on 217 riviÃ¤ (suurin sallittu on 200)." source="com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck"/>
+</file>
+<file name="C:\Users\Olaml\Desktop\Koulu\Miinaharava\Miinaharava\src\main\java\fi\ola\logic\Logiikka.java">
+</file>
+<file name="C:\Users\Olaml\Desktop\Koulu\Miinaharava\Miinaharava\src\main\java\fi\ola\minesweeper\Main.java">
+</file>
+<file name="C:\Users\Olaml\Desktop\Koulu\Miinaharava\Miinaharava\src\main\java\fi\ola\tiles\MiinaRuutu.java">
+</file>
+<file name="C:\Users\Olaml\Desktop\Koulu\Miinaharava\Miinaharava\src\main\java\fi\ola\tiles\NumeroRuutu.java">
+</file>
+<file name="C:\Users\Olaml\Desktop\Koulu\Miinaharava\Miinaharava\src\main\java\fi\ola\tiles\Ruutu.java">
+</file>
+<file name="C:\Users\Olaml\Desktop\Koulu\Miinaharava\Miinaharava\src\main\java\fi\ola\tiles\TyhjaRuutu.java">
+</file>
+<file name="C:\Users\Olaml\Desktop\Koulu\Miinaharava\Miinaharava\src\main\java\fi\ola\ui\MinesweeperUI.java">
+</file>
+<file name="C:\Users\Olaml\Desktop\Koulu\Miinaharava\Miinaharava\src\main\java\fi\ola\ui\RuutuButton.java">
+<error line="22" column="5" severity="error" message="Javadoc-kommentti puuttuu." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+</file>
+</checkstyle>

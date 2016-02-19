@@ -26,7 +26,7 @@ under the License.
     <copyright>&#169;2016</copyright>
     <item>
       <title>File: 9,
-             Errors: 21,
+             Errors: 2,
              Warnings: 0,
              Infos: 0
       </title>
@@ -46,7 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#userinterface.RuutuButton.java">userinterface/RuutuButton.java</a>
+                  <a href="${project.url}/checkstyle.html#fi.ola.minesweeper.Main.java">fi/ola/minesweeper/Main.java</a>
                 </td>
                 <td>
                   0
@@ -60,7 +60,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#miinaharava.gameObjects.NumeroRuutu.java">miinaharava/gameObjects/NumeroRuutu.java</a>
+                  <a href="${project.url}/checkstyle.html#fi.ola.logic.GameBoard.java">fi/ola/logic/GameBoard.java</a>
                 </td>
                 <td>
                   0
@@ -74,21 +74,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#miinaharava.gameObjects.MiinaRuutu.java">miinaharava/gameObjects/MiinaRuutu.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  5
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#miinaharava.gameObjects.Ruutu.java">miinaharava/gameObjects/Ruutu.java</a>
+                  <a href="${project.url}/checkstyle.html#fi.ola.ui.RuutuButton.java">fi/ola/ui/RuutuButton.java</a>
                 </td>
                 <td>
                   0
@@ -102,21 +88,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#userinterface.MinesweeperUI.java">userinterface/MinesweeperUI.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  7
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#main.java.miinaharava2.Main.java">main/java/miinaharava2/Main.java</a>
+                  <a href="${project.url}/checkstyle.html#fi.ola.tiles.TyhjaRuutu.java">fi/ola/tiles/TyhjaRuutu.java</a>
                 </td>
                 <td>
                   0
@@ -130,7 +102,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#miinaharava.gameObjects.TyhjaRuutu.java">miinaharava/gameObjects/TyhjaRuutu.java</a>
+                  <a href="${project.url}/checkstyle.html#fi.ola.ui.MinesweeperUI.java">fi/ola/ui/MinesweeperUI.java</a>
                 </td>
                 <td>
                   0
@@ -139,12 +111,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
+                  0
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#miinaharava.GameBoard.java">miinaharava/GameBoard.java</a>
+                  <a href="${project.url}/checkstyle.html#fi.ola.logic.Logiikka.java">fi/ola/logic/Logiikka.java</a>
                 </td>
                 <td>
                   0
@@ -153,12 +125,40 @@ under the License.
                   0
                 </td>
                 <td>
-                  6
+                  0
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#miinaharava.Logiikka.java">miinaharava/Logiikka.java</a>
+                  <a href="${project.url}/checkstyle.html#fi.ola.tiles.NumeroRuutu.java">fi/ola/tiles/NumeroRuutu.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#fi.ola.tiles.Ruutu.java">fi/ola/tiles/Ruutu.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#fi.ola.tiles.MiinaRuutu.java">fi/ola/tiles/MiinaRuutu.java</a>
                 </td>
                 <td>
                   0
