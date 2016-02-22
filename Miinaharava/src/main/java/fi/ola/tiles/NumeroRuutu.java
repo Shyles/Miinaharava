@@ -31,6 +31,8 @@ public class NumeroRuutu extends Ruutu {
         }
         super.toBePrintedOnRuutuButton = "" + mineNeighbours;
     }
+    
+    
 
     
 }

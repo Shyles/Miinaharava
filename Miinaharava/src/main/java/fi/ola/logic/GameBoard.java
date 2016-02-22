@@ -66,55 +66,6 @@ public class GameBoard {
     }
 
     /**
-     * Sijoittaa mineAmount-määrän MiinaRuutuja GameBoardiin. Toimii vain
-     * tyhjälle laudalle. Ei tee mitään jos lauta, miinojen määrä tai ruutujen
-     * määrä on null.
-     */
-    public void randomizeMineLocations() {
-//        if (gameboard == null || mineAmount == null || boxAmount == null) {
-//        }
-        Random rand = new Random();
-        int rowAmount = gameboard.length;
-        int colAmount = gameboard.length;
-        for (int i = 0; i < mineAmount;) {
-            int rowLocation = rand.nextInt(rowAmount);
-            int columnLocation = rand.nextInt(colAmount);
-            if (gameboard[rowLocation][columnLocation] == null) {
-                gameboard[rowLocation][columnLocation] = new MiinaRuutu(this, rowLocation, columnLocation);
-                i++;
-            }
-        }
-    }
-
-    /**
-     * Täyttää pelilaudan TyhjaRuuduilla ja NumeroRuuduilla loogisesti oikein.
-     */
-    public void createEmptiesAndNumbers() {
-        for (int col = 0; col < this.cols; col++) {
-            for (int row = 0; row < this.rows; row++) {
-                if (gameboard[col][row] instanceof MiinaRuutu) {
-                    continue;
-                }
-                gameboard[col][row] = new Ruutu(this, row, col);
-            }
-        }
-        for (int col = 0; col < this.cols; col++) {
-            for (int row = 0; row < this.rows; row++) {
-                if (gameboard[col][row] instanceof MiinaRuutu) {
-                    continue;
-                }
-                if (neighboursContainMiinaRuutu(gameboard[col][row])) {
-                    gameboard[col][row] = new NumeroRuutu(this, row, col);
-                    gameboard[col][row].setUpTyhjaOrNumeroRuutu();
-                } else {
-                    gameboard[col][row] = new TyhjaRuutu(this, row, col);
-                    gameboard[col][row].setUpTyhjaOrNumeroRuutu();
-                }
-            }
-        }
-    }
-
-    /**
      * Palauttaa Ruudun kaikki naapurit, määrä on 8, 5 tai 3 sijainnista
      * riippuen.
      *
@@ -137,6 +88,16 @@ public class GameBoard {
             }
         }
         return neighbours;
+    }
+
+    public boolean neighboursContainMiinaRuutu(Ruutu ruutu) {
+        ArrayList<Ruutu> naapurit = getNeighbours(ruutu);
+        for (Ruutu currentRuutu : naapurit) {
+            if (currentRuutu instanceof MiinaRuutu) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void setMineAmount(int mineAmount) {
@@ -204,16 +165,6 @@ public class GameBoard {
 
     public void setGameContinues(int gameContinues) {
         this.gameContinues = gameContinues;
-    }
-
-    private boolean neighboursContainMiinaRuutu(Ruutu ruutu) {
-        ArrayList<Ruutu> naapurit = getNeighbours(ruutu);
-        for (Ruutu currentRuutu : naapurit) {
-            if (currentRuutu instanceof MiinaRuutu) {
-                return true;
-            }
-        }
-        return false;
     }
 
 }

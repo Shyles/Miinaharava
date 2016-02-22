@@ -1,28 +1,30 @@
 package fi.ola.tiles;
 
 import fi.ola.logic.GameBoard;
+import fi.ui.RuutuButton;
 import java.awt.Color;
 
 /**
- * Luokka on yläkäsite Miina-, Tyhja- ja NumeroRuudulle. Kaikilla Ruudut
- * tietävät sijaintinsa niihin liitetyssä GameBoardissa. Ruutu tietää myös onko
- * se aukaistu ja onko se liputettu. Myös tieto minkälaiseksi RuutuButtonin
- * nappi tulee sitä painettaessa löytyy Ruudusta.
+ * Luokka on ylÃ¤kÃ¤site Miina-, Tyhja- ja NumeroRuudulle. Kaikilla Ruudut
+ * tietÃ¤vÃ¤t sijaintinsa niihin liitetyssÃ¤ GameBoardissa. Ruutu tietÃ¤Ã¤ myÃ¶s onko
+ * se aukaistu ja onko se liputettu. MyÃ¶s tieto minkÃ¤laiseksi RuutuButtonin
+ * nappi tulee sitÃ¤ painettaessa lÃ¶ytyy Ruudusta.
  */
 public class Ruutu {
 
     private boolean flagged = false;
     private boolean opened = false;
-    private int row;
-    private int col;
+    private final int row;
+    private final int col;
     protected GameBoard gb;
     protected Color color;
     protected String toBePrintedOnRuutuButton;
     protected int mineNeighbours;
+    protected RuutuButton ruutuButton;
 
     /**
      * Konstruktori.
-     * @param gb Pöytä johon Ruutu on liitetty.
+     * @param gb PÃ¶ytÃ¤ johon Ruutu on liitetty.
      * @param row Ruudun rivi.
      * @param col Ruudun kolumni.
      */
@@ -53,10 +55,11 @@ public class Ruutu {
      * Reveals the underneath of Ruutu and acts accordingly.
      */
     public void revealUnderneath() {
-        if (flagged) {
+        if (opened) {
             return;
         }
         setOpened(true);
+        ruutuButton.renderOpen();
     }
 
     public int getCol() {
@@ -100,4 +103,11 @@ public class Ruutu {
     public void setUpTyhjaOrNumeroRuutu() {
     }
 
+    public void setRuutuButton(RuutuButton ruutuButton) {
+        this.ruutuButton = ruutuButton;
+    }
+
+    public RuutuButton getRuutuButton() {
+        return ruutuButton;
+    }
 }

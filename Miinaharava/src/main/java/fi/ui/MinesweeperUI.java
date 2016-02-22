@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import fi.ola.logic.GameBoard;
+import fi.ola.logic.Logiikka;
 import fi.ola.logic.TestUtils;
 import fi.ola.tiles.Ruutu;
 
@@ -16,7 +17,7 @@ import fi.ola.tiles.Ruutu;
  */
 public class MinesweeperUI extends javax.swing.JFrame {
 
-    private GameBoard gb = new GameBoard();
+    private Logiikka logiikka = new Logiikka();
 
     public MinesweeperUI() {
         initComponents();
@@ -26,12 +27,14 @@ public class MinesweeperUI extends javax.swing.JFrame {
 
     private void startNewGame() {
         TestUtils utilityFactory = new TestUtils();
-        utilityFactory.setUpNewTestGameBoard(gb);
+        logiikka.currentBoard = new GameBoard();
+        utilityFactory.setUpNewTestGameBoard(logiikka);
         addGameBoard();
     }
 
     private void addGameBoard() {
-        lautaPaneeli.setLayout(new GridLayout((int) gb.getRows(), (int) gb.getCols(), 2, 2));
+        GameBoard gb = logiikka.currentBoard;
+        lautaPaneeli.setLayout(new GridLayout((int) gb.getRows(), (int) gb.getCols(), 1, 1));
         for (int col = 0; col < gb.getCols(); col++) {
             for (int row = 0; row < gb.getRows(); row++) {
                 RuutuButton button = new RuutuButton(gb.getRuutuInLocation(row, col));

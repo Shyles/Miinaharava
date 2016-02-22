@@ -5,12 +5,13 @@ import java.util.ArrayList;
 
 public class TestUtils {
 
-    public void createNewGameBoardFilledWithEmptyRuutu(GameBoard gb) {
+    public void createNewGameBoardFilledWithEmptyRuutu(Logiikka logiikka) {
         Integer[] availableAmountsArray = {36};
+        GameBoard gb = logiikka.currentBoard;
         gb.setAvailableAmountsFromArray(availableAmountsArray);
         try {
             gb.newBoard(36, 0);
-            gb.createEmptiesAndNumbers();
+            logiikka.createEmptiesAndNumbers();
         } catch (Exception e) {
             System.out.println("Failed to set up a new test board in createNewGameBoardFilledWithEmptyRuutu.");
         }
@@ -22,13 +23,14 @@ public class TestUtils {
     /**
      * Kovakoodattu testipöydän rakentaminen.
      */
-    public void setUpNewTestGameBoard(GameBoard gb) {
+    public void setUpNewTestGameBoard(Logiikka logiikka) {
+        GameBoard gb = logiikka.currentBoard;
         Integer[] availableAmountsArray = {36};
         gb.setAvailableAmountsFromArray(availableAmountsArray);
         try {
             gb.newBoard(36, 6);
-            gb.randomizeMineLocations();
-            gb.createEmptiesAndNumbers();
+            logiikka.randomizeMineLocations();
+            logiikka.createEmptiesAndNumbers();
         } catch (Exception e) {
             System.out.println("Failed to set up a new test board in setUpNewTestGameBoard");
         }

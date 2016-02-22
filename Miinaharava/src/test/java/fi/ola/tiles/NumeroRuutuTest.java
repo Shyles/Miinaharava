@@ -4,6 +4,7 @@ import fi.ola.tiles.NumeroRuutu;
 import fi.ola.tiles.Ruutu;
 import junit.framework.Assert;
 import fi.ola.logic.GameBoard;
+import fi.ola.logic.Logiikka;
 import fi.ola.logic.TestUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,6 +19,7 @@ public class NumeroRuutuTest {
 
     private NumeroRuutu numeroruutu;
     private TestUtils utilityFactory = new TestUtils();
+    private Logiikka logiikka = new Logiikka();
 
     public NumeroRuutuTest() {
     }
@@ -52,7 +54,8 @@ public class NumeroRuutuTest {
     @Test
     public void setsNeighbouringMinesAmountCorrectly() {
         GameBoard gb = new GameBoard();
-        utilityFactory.createNewGameBoardFilledWithEmptyRuutu(gb);
+        logiikka.currentBoard = gb;
+        utilityFactory.createNewGameBoardFilledWithEmptyRuutu(logiikka);
         utilityFactory.setUpMiinaRuutuInLocations(new Integer[] {1,0, 1,2, 2,0}, gb);
         
         NumeroRuutu keskiRuutu = new NumeroRuutu(gb, 1, 1);

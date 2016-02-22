@@ -35,12 +35,13 @@ public class GameBoardTest {
     private GameBoard gameboard;
     private Integer[] availableAmounts = {9, 16, 25, 36};
     private TestUtils utilityFactory = new TestUtils();
+    private Logiikka logiikka = new Logiikka();
 
     @Before
     public void setUp() {
         gameboard = new GameBoard();
         gameboard.setAvailableAmountsFromArray(availableAmounts);
-
+        logiikka.currentBoard = gameboard;
     }
 
 //    private void setUpNewGameBoard(GameBoard gb) {
@@ -78,7 +79,7 @@ public class GameBoardTest {
     public void randomizeMineLocationsMakesCorrectAmountOfMines() {
         gameboard.setGameboard(new Ruutu[6][6]);
         gameboard.setMineAmount(6);
-        gameboard.randomizeMineLocations();
+        logiikka.randomizeMineLocations();
         int mineAmount = 0;
         for (Ruutu[] ruutuArray : gameboard.getGameboard()) {
             for (Ruutu ruutu1 : ruutuArray) {
@@ -146,7 +147,7 @@ public class GameBoardTest {
 
     @Test
     public void getRuutuInLocationReturnsCorrectRuutu() {
-        utilityFactory.setUpNewTestGameBoard(gameboard);
+        utilityFactory.setUpNewTestGameBoard(logiikka);
         for (int col = 0; col < gameboard.getCols(); col++) {
             for (int row = 0; row < gameboard.getRows(); row++) {     
                 Ruutu methodRetrieved = gameboard.getRuutuInLocation(row, col);
@@ -159,17 +160,5 @@ public class GameBoardTest {
         }
     }
     
-    @Test
-    public void createEmptiesAndNumbersCreatesCorrectNumbersForNumeroRuutu() {
-        utilityFactory.createNewGameBoardFilledWithEmptyRuutu(gameboard);
-        utilityFactory.setUpMiinaRuutuInLocations(new Integer[] {1,0, 2,0}, gameboard);
-        gameboard.createEmptiesAndNumbers();
-        Ruutu zeroZero = gameboard.getGameboard()[0][0];
-        Ruutu oneOne = gameboard.getGameboard()[1][1];
-        Ruutu twoOne = gameboard.getGameboard()[0][0];
-        
-        assertEquals(1, zeroZero.getMineNeighbours());
-        assertEquals(2, oneOne.getMineNeighbours());
-        assertEquals(1, twoOne.getMineNeighbours());
-    }
+
 }

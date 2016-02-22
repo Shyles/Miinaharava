@@ -22,7 +22,7 @@ public class TyhjaRuutu extends Ruutu {
     }
 
     @Override
-    public void setToBePrintedOnRuutuButton(String toBePrintedOnRuutuButton) {
+    public void revealUnderneath(){
         if (super.isOpened()) {
             return;
         }
@@ -31,6 +31,7 @@ public class TyhjaRuutu extends Ruutu {
         for (Ruutu ruutu : neighbours) {
             if (!ruutu.isOpened() && !(ruutu instanceof MiinaRuutu)) {
                 ruutu.revealUnderneath();
+                ruutuButton.renderOpen();
             }
         }
     }

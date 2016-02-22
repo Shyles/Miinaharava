@@ -4,6 +4,7 @@ import fi.ola.logic.Logiikka;
 import fi.ola.logic.GameBoard;
 import junit.framework.Assert;
 import fi.ola.tiles.MiinaRuutu;
+import fi.ola.tiles.Ruutu;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -14,6 +15,8 @@ import static org.junit.Assert.*;
 public class LogiikkaTest {
 
     public Logiikka logiikka;
+    public TestUtils utilityFactory;
+    public GameBoard gameboard;
 
     public LogiikkaTest() {
     }
@@ -30,8 +33,9 @@ public class LogiikkaTest {
     public void setUp() {
         logiikka = new Logiikka();
         logiikka.currentBoard = new GameBoard();
-        TestUtils utilityFactor = new TestUtils();
-        utilityFactor.setUpNewTestGameBoard(logiikka.currentBoard);
+        gameboard = logiikka.currentBoard;
+        utilityFactory = new TestUtils();
+        utilityFactory.setUpNewTestGameBoard(logiikka);
 
     }
 
@@ -73,5 +77,18 @@ public class LogiikkaTest {
         logiikka.open(col, row);
         System.out.println(logiikka.currentBoard.getGameContinues());
         assertEquals(logiikka.loseGame(), logiikka.gameEndingString);
+    }
+        @Test
+    public void createEmptiesAndNumbersCreatesCorrectNumbersForNumeroRuutu() {
+        utilityFactory.createNewGameBoardFilledWithEmptyRuutu(logiikka);
+        utilityFactory.setUpMiinaRuutuInLocations(new Integer[] {1,0, 2,0}, gameboard);
+        logiikka.createEmptiesAndNumbers();
+        Ruutu zeroZero = gameboard.getGameboard()[0][0];
+        Ruutu oneOne = gameboard.getGameboard()[1][1];
+        Ruutu twoOne = gameboard.getGameboard()[0][0];
+        
+        assertEquals(1, zeroZero.getMineNeighbours());
+        assertEquals(2, oneOne.getMineNeighbours());
+        assertEquals(1, twoOne.getMineNeighbours());
     }
 }
