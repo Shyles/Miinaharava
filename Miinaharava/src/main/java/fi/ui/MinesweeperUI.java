@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import fi.ola.logic.GameBoard;
+import fi.ola.logic.TestUtils;
 import fi.ola.tiles.Ruutu;
 
 /**
@@ -24,7 +25,8 @@ public class MinesweeperUI extends javax.swing.JFrame {
     }
 
     private void startNewGame() {
-        gb.setUpNewTestGameBoard();
+        TestUtils utilityFactory = new TestUtils();
+        utilityFactory.setUpNewTestGameBoard(gb);
         addGameBoard();
     }
 

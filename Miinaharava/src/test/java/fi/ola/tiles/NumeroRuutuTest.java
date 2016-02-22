@@ -4,6 +4,9 @@ import fi.ola.tiles.NumeroRuutu;
 import fi.ola.tiles.Ruutu;
 import junit.framework.Assert;
 import fi.ola.logic.GameBoard;
+import fi.ola.logic.TestUtils;
+import java.util.ArrayList;
+import java.util.Arrays;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -13,7 +16,8 @@ import static org.junit.Assert.*;
 
 public class NumeroRuutuTest {
 
-    public NumeroRuutu numeroruutu;
+    private NumeroRuutu numeroruutu;
+    private TestUtils utilityFactory = new TestUtils();
 
     public NumeroRuutuTest() {
     }
@@ -28,7 +32,8 @@ public class NumeroRuutuTest {
 
     @Before
     public void setUp() {
-        numeroruutu = new NumeroRuutu(new GameBoard(), 1,1);
+        numeroruutu = new NumeroRuutu(new GameBoard(), 1, 1);
+
     }
 
     @After
@@ -42,5 +47,19 @@ public class NumeroRuutuTest {
         } else if (numeroruutu.isFlagged() != false) {
             Assert.fail("Flagged isn't false!");
         }
+    }
+
+    @Test
+    public void setsNeighbouringMinesAmountCorrectly() {
+        GameBoard gb = new GameBoard();
+        utilityFactory.createNewGameBoardFilledWithEmptyRuutu(gb);
+        utilityFactory.setUpMiinaRuutuInLocations(new Integer[] {1,0, 1,2, 2,0}, gb);
+        
+        NumeroRuutu keskiRuutu = new NumeroRuutu(gb, 1, 1);
+        gb.getGameboard()[1][1] = keskiRuutu;
+        keskiRuutu.setUpTyhjaOrNumeroRuutu();
+        
+        assertEquals(3, keskiRuutu.getMineNeighbours());
+
     }
 }

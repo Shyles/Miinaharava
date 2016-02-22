@@ -24,6 +24,7 @@ public class RuutuButton extends JButton {
         addActionListener();
         this.addKeyListener(null);
         this.setPreferredSize(new Dimension(40, 40));
+        this.setBackground(Color.LIGHT_GRAY);
     }
 
     /**
@@ -31,13 +32,15 @@ public class RuutuButton extends JButton {
      */
     private void addActionListener() {
         this.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!ruutu.isOpened()) {
-                    ruutu.revealUnderneath();
-                    me.setBackground(ruutu.getColor());
-                    me.setText(ruutu.getToBePrintedOnRuutuButton());
+                if (!ruutu.isFlagged()) {
+                    if (!ruutu.isOpened()) {
+                        ruutu.revealUnderneath();
+                        me.setBackground(ruutu.getColor());
+                        me.setText(ruutu.getToBePrintedOnRuutuButton());
+                    }
                 }
             }
         });
@@ -47,14 +50,13 @@ public class RuutuButton extends JButton {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (SwingUtilities.isRightMouseButton(e)) {
+                    if (ruutu.isOpened()) { return; }
                     if (!ruutu.isFlagged()) {
-
-                        if (!ruutu.isOpened()) {
                             me.setBackground(Color.RED);
-                            me.setText("*");
-                        }
+                            me.setText("F");
                     } else {
-                        me.setBackground(Color.BLUE);
+                        me.setBackground(Color.LIGHT_GRAY);
+                        me.setText("");
                     }
                     ruutu.setFlagged(!ruutu.isFlagged());
                 }

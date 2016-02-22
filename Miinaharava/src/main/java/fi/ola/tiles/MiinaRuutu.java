@@ -26,6 +26,7 @@ public class MiinaRuutu extends Ruutu {
         super.revealUnderneath();
         super.gb.setGameContinues(0);
         System.out.println("Miina");
+        
     }
 
 }

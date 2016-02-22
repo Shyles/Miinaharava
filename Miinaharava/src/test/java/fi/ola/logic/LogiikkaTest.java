@@ -30,7 +30,9 @@ public class LogiikkaTest {
     public void setUp() {
         logiikka = new Logiikka();
         logiikka.currentBoard = new GameBoard();
-        logiikka.currentBoard.setUpNewTestGameBoard();
+        TestUtils utilityFactor = new TestUtils();
+        utilityFactor.setUpNewTestGameBoard(logiikka.currentBoard);
+
     }
 
     @After

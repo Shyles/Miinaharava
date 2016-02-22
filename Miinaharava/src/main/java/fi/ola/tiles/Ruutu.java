@@ -18,6 +18,7 @@ public class Ruutu {
     protected GameBoard gb;
     protected Color color;
     protected String toBePrintedOnRuutuButton;
+    protected int mineNeighbours;
 
     /**
      * Konstruktori.
@@ -47,7 +48,7 @@ public class Ruutu {
     public boolean isOpened() {
         return opened;
     }
-
+    
     /**
      * Reveals the underneath of Ruutu and acts accordingly.
      */
@@ -90,6 +91,13 @@ public class Ruutu {
 
     public void setToBePrintedOnRuutuButton(String toBePrintedOnRuutuButton) {
         this.toBePrintedOnRuutuButton = toBePrintedOnRuutuButton;
+    }
+
+    public int getMineNeighbours() {
+        return mineNeighbours;
+    }
+
+    public void setUpTyhjaOrNumeroRuutu() {
     }
 
 }

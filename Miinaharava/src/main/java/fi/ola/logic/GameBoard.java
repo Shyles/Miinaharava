@@ -1,6 +1,7 @@
 package fi.ola.logic;
 
 import fi.ola.tiles.MiinaRuutu;
+import fi.ola.tiles.NumeroRuutu;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -36,7 +37,7 @@ public class GameBoard {
      *
      * @param boxAmount Ruutujen määrä
      * @param mineAmount MiinaRuutujen määrä
-     * 
+     *
      * @throws RuntimeException Custom made.
      */
     public void newBoard(int boxAmount, int mineAmount) throws RuntimeException {
@@ -45,19 +46,14 @@ public class GameBoard {
             this.boxAmount = boxAmount;
             setUpRowsAndCols();
             gameboard = new Ruutu[6][6];
-            createBoard(boxAmount);
         } else {
             throw new RuntimeException("Invalid argument. Currently supports integers " + availableAmounts.toString());
         }
     }
 
-    private void createBoard(int boxAmount) {
-        int mineAmount = 6;
-        boxAmount = 36;
-    }
-
     /**
      * Sets availableAmounts from given array.
+     *
      * @param availableAmountsArray Array containing available amounts.
      */
     public void setAvailableAmountsFromArray(Integer[] availableAmountsArray) {
@@ -78,13 +74,13 @@ public class GameBoard {
 //        if (gameboard == null || mineAmount == null || boxAmount == null) {
 //        }
         Random rand = new Random();
-        int rows = gameboard.length;
-        int cols = gameboard.length;
+        int rowAmount = gameboard.length;
+        int colAmount = gameboard.length;
         for (int i = 0; i < mineAmount;) {
-            int rowLoc = rand.nextInt(rows);
-            int colLoc = rand.nextInt(cols);
-            if (gameboard[rowLoc][colLoc] == null) {
-                gameboard[rowLoc][colLoc] = new MiinaRuutu(this, rowLoc, colLoc);
+            int rowLocation = rand.nextInt(rowAmount);
+            int columnLocation = rand.nextInt(colAmount);
+            if (gameboard[rowLocation][columnLocation] == null) {
+                gameboard[rowLocation][columnLocation] = new MiinaRuutu(this, rowLocation, columnLocation);
                 i++;
             }
         }
@@ -94,17 +90,26 @@ public class GameBoard {
      * Täyttää pelilaudan TyhjaRuuduilla ja NumeroRuuduilla loogisesti oikein.
      */
     public void createEmptiesAndNumbers() {
-        int miina = 1;
-        int eiMiina = 1;
         for (int col = 0; col < this.cols; col++) {
             for (int row = 0; row < this.rows; row++) {
-                Ruutu ruutu = gameboard[col][row];
-                if (ruutu instanceof MiinaRuutu) {
+                if (gameboard[col][row] instanceof MiinaRuutu) {
                     continue;
                 }
-                //TODO add howtocreatenumbers
-                gameboard[col][row] = new TyhjaRuutu(this, row, col);
-
+                gameboard[col][row] = new Ruutu(this, row, col);
+            }
+        }
+        for (int col = 0; col < this.cols; col++) {
+            for (int row = 0; row < this.rows; row++) {
+                if (gameboard[col][row] instanceof MiinaRuutu) {
+                    continue;
+                }
+                if (neighboursContainMiinaRuutu(gameboard[col][row])) {
+                    gameboard[col][row] = new NumeroRuutu(this, row, col);
+                    gameboard[col][row].setUpTyhjaOrNumeroRuutu();
+                } else {
+                    gameboard[col][row] = new TyhjaRuutu(this, row, col);
+                    gameboard[col][row].setUpTyhjaOrNumeroRuutu();
+                }
             }
         }
     }
@@ -117,7 +122,7 @@ public class GameBoard {
      * @return ArrayList parametrin naapuriRuuduista.
      */
     public ArrayList<Ruutu> getNeighbours(Ruutu ruutu) {
-        ArrayList<Ruutu> neighbours = new ArrayList<Ruutu>();
+        ArrayList<Ruutu> neighbours = new ArrayList<>();
         int rowAmount = ruutu.getRow();
         int colAmount = ruutu.getCol();
         for (int col = colAmount - 1; col < colAmount + 2; col++) {
@@ -128,25 +133,10 @@ public class GameBoard {
                 try {
                     neighbours.add(gameboard[col][row]);
                 } catch (ArrayIndexOutOfBoundsException e) {
-                    continue;
                 }
             }
         }
         return neighbours;
-    }
-
-    /**
-     * Kovakoodattu testipöydän rakentaminen.
-     */
-    public void setUpNewTestGameBoard() {
-        setAvailableAmountsFromArray(availableAmountsArray);
-        try {
-            newBoard(36, 6);
-            randomizeMineLocations();
-            createEmptiesAndNumbers();
-        } catch (Exception e) {
-            System.out.println("Failed to set up a new board");
-        }
     }
 
     public void setMineAmount(int mineAmount) {
@@ -163,6 +153,7 @@ public class GameBoard {
 
     /**
      * Open Ruutu from a given location.
+     *
      * @param col Kolumni.
      * @param row Rivi.
      * @return Palauttaa 0 jostain syystä... hmmm?
@@ -182,6 +173,7 @@ public class GameBoard {
 
     /**
      * Fetches Ruutu from a given location.
+     *
      * @param row Rivi.
      * @param col Kolumni.
      * @return Ruutu in a given location.
@@ -212,6 +204,16 @@ public class GameBoard {
 
     public void setGameContinues(int gameContinues) {
         this.gameContinues = gameContinues;
+    }
+
+    private boolean neighboursContainMiinaRuutu(Ruutu ruutu) {
+        ArrayList<Ruutu> naapurit = getNeighbours(ruutu);
+        for (Ruutu currentRuutu : naapurit) {
+            if (currentRuutu instanceof MiinaRuutu) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

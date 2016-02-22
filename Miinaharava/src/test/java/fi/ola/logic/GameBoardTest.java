@@ -2,6 +2,7 @@ package fi.ola.logic;
 
 import fi.ola.logic.GameBoard;
 import fi.ola.tiles.MiinaRuutu;
+import fi.ola.tiles.NumeroRuutu;
 import fi.ola.tiles.Ruutu;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,7 +33,8 @@ public class GameBoardTest {
     public static void tearDownClass() {
     }
     private GameBoard gameboard;
-    Integer[] availableAmounts = {9, 16, 25, 36};
+    private Integer[] availableAmounts = {9, 16, 25, 36};
+    private TestUtils utilityFactory = new TestUtils();
 
     @Before
     public void setUp() {
@@ -144,7 +146,7 @@ public class GameBoardTest {
 
     @Test
     public void getRuutuInLocationReturnsCorrectRuutu() {
-        gameboard.setUpNewTestGameBoard();
+        utilityFactory.setUpNewTestGameBoard(gameboard);
         for (int col = 0; col < gameboard.getCols(); col++) {
             for (int row = 0; row < gameboard.getRows(); row++) {     
                 Ruutu methodRetrieved = gameboard.getRuutuInLocation(row, col);
@@ -155,6 +157,19 @@ public class GameBoardTest {
                 }
             }
         }
-
+    }
+    
+    @Test
+    public void createEmptiesAndNumbersCreatesCorrectNumbersForNumeroRuutu() {
+        utilityFactory.createNewGameBoardFilledWithEmptyRuutu(gameboard);
+        utilityFactory.setUpMiinaRuutuInLocations(new Integer[] {1,0, 2,0}, gameboard);
+        gameboard.createEmptiesAndNumbers();
+        Ruutu zeroZero = gameboard.getGameboard()[0][0];
+        Ruutu oneOne = gameboard.getGameboard()[1][1];
+        Ruutu twoOne = gameboard.getGameboard()[0][0];
+        
+        assertEquals(1, zeroZero.getMineNeighbours());
+        assertEquals(2, oneOne.getMineNeighbours());
+        assertEquals(1, twoOne.getMineNeighbours());
     }
 }

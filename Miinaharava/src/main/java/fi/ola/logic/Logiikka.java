@@ -40,12 +40,10 @@ public class Logiikka {
         switch (loseIfZero) {
             case 0:
                 gameEndingString = loseGame();
-                System.out.println(currentBoard.getGameContinues());
                 endGame();
                 break;
             case 1:
                 gameEndingString = winGame();
-                System.out.println(currentBoard.getGameContinues());
                 endGame();
                 break;
         }

@@ -1,12 +1,5 @@
 fi\ola\logic\Logiikka.class
-fi\ola\ui\RuutuButton.class
-fi\ola\ui\MinesweeperUI$2.class
-fi\ola\ui\MinesweeperUI$3.class
-fi\ola\ui\RuutuButton$1.class
 fi\ola\logic\GameBoard.class
-fi\ola\ui\MinesweeperUI.class
-fi\ola\ui\MinesweeperUI$1.class
-fi\ola\ui\RuutuButton$2.class
 fi\ola\minesweeper\Main.class
 fi\ola\tiles\MiinaRuutu.class
 fi\ola\tiles\TyhjaRuutu.class
