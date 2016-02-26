@@ -3,7 +3,7 @@ title New Game
 
 Main->+MinesweeperUI: MineSweeperUI
 MinesweeperUI->MinesweeperUI: initcomponents()
-MinesweeperUI->+MinesweeperUI: startNewGame()
+MinesweeperUI->+MinesweeperUI: startNewGame0()
 MinesweeperUI->MinesweeperUI: setDifficultyFromComboBox(difficultyComboBox);
 MinesweeperUI->+MinesweeperUI: setUpGameBoardAndLogic
 MinesweeperUI->Logiikka: Logiikka()
@@ -23,3 +23,32 @@ end
 
 note left of MinesweeperUI:
 Game is ready to be played
+
+PLay Game 
+title Play game
+
+
+loop click Ruutu
+alt flag
+    RuutuButton->RuutuButton: renderFlagged()
+else unflag
+    RuutuButton->RuutuButton: renderunFlagged()
+else open
+    RuutuButton->Ruutu: revealUnderneath()
+    Ruutu->Ruutu: renderOpen()
+    alt empty
+        Ruutu->GameBoard: getNeighbours()
+        GameBoard-->Ruutu: neighbouringRuutu
+        loop open Empty and Number
+            Ruutu->Ruutu: revealUnderneath
+        end
+    else Numero
+        Ruutu->Ruutu: 
+    else Miina
+        Ruutu->Logiikka: loseGame()
+    end
+    RuutuButton->Ruutu: revealUnderneath()
+    end
+note right of RuutuButton: last NON-mine Ruutu
+Ruutu->Logiikka: winGame()
+end

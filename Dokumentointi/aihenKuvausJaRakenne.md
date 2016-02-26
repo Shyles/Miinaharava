@@ -9,3 +9,5 @@ Tarkennus luokkakaavioon
 ![Alt text](dl3luokkakaavio.jpg)
 
 ![Alt text](NewGame.png "Uuden pelin sekvenssikaavio")
+
+![Alt text](PlayGame.png "Pelaamisen sekvenssikaavio")
