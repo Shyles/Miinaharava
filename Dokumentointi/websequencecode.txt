@@ -1,0 +1,25 @@
+New Game sequence
+title New Game
+
+Main->+MinesweeperUI: MineSweeperUI
+MinesweeperUI->MinesweeperUI: initcomponents()
+MinesweeperUI->+MinesweeperUI: startNewGame()
+MinesweeperUI->MinesweeperUI: setDifficultyFromComboBox(difficultyComboBox);
+MinesweeperUI->+MinesweeperUI: setUpGameBoardAndLogic
+MinesweeperUI->Logiikka: Logiikka()
+MinesweeperUI->+Logiikka: newGame(int size)
+Logiikka->GameBoard: GameBoard()
+Logiikka->GameBoard: newGame(int boxes, int mines)
+note left of GameBoard: Set up variables
+Logiikka->Logiikka: randomizeMineLocations()
+Logiikka->-Logiikka:createEmptiesAndNumbers()
+MinesweeperUI->+MinesweeperUI: addRuutuButtons
+
+loop Create RuutuButton
+    MinesweeperUI->GameBoard: getRuutu()
+    GameBoard-->MinesweeperUI: Ruutu
+    MinesweeperUI->-MinesweeperUI: addButton(Ruutu) 
+end
+
+note left of MinesweeperUI:
+Game is ready to be played

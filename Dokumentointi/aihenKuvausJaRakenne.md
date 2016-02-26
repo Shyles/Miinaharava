@@ -8,4 +8,4 @@ Tarkennus luokkakaavioon
 
 ![Alt text](dl3luokkakaavio.jpg)
 
-![Alt text](NewGame.pnq "Uuden pelin sekvenssikaavio")
+![Alt text](NewGame.png "Uuden pelin sekvenssikaavio")
