@@ -4,6 +4,7 @@ import fi.ola.tiles.MiinaRuutu;
 import fi.ola.tiles.NumeroRuutu;
 import fi.ola.tiles.Ruutu;
 import fi.ola.tiles.TyhjaRuutu;
+import fi.ui.MinesweeperUI;
 import java.util.Random;
 
 /**
@@ -15,6 +16,7 @@ public class Logiikka {
 
     public GameBoard currentBoard;
     public String gameEndingString;
+    private MinesweeperUI userInterface;
 
     /**
      * Ei tee mitään erikoista.
@@ -23,24 +25,41 @@ public class Logiikka {
     }
 
     /**
-     * Luo uuden pöydän, keskeneräinen.
-     * 
-     * @param sizeOfBoard Pöydän koko.
+     * Tells interface to render a lost game.
+     */
+    public void endLosingGame() {
+        userInterface.renderAllRuutuButtonsOpen();
+        userInterface.popupLostGameDialoque();
+    }
+
+    
+    /**
+     * Tells interface to render a won game.
+     */
+    public void endWinningGame() {
+        userInterface.renderAllRuutuButtonsOpen();
+        userInterface.popupLostGameDialoque();
+    }
+
+    /**
+     * Luo uuden pöydän.
+     *
+     * @param boxesAndMines Ruutujen ja MiinaRuutujen määrä, indeksissä 0 on Ruutujen kokonaismäärä.
      * @throws Exception Kaikki.
      */
-    public void newGame(int sizeOfBoard) throws Exception {
-        GameBoard board = new GameBoard();
-        board.newBoard(sizeOfBoard, 1);
+    public void newGame(int[] boxesAndMines) throws Exception {
+        currentBoard = new GameBoard();
+        currentBoard.setLogiikka(this);
+        currentBoard.newBoard(boxesAndMines[0], boxesAndMines[1]);
+        randomizeMineLocations();
+        createEmptiesAndNumbers();
     }
-    
-        /**
+
+    /**
      * Sijoittaa mineAmount-määrän MiinaRuutuja GameBoardiin. Toimii vain
-     * tyhjälle laudalle. Ei tee mitään jos lauta, miinojen määrä tai ruutujen
-     * määrä on null.
+     * tyhjälle laudalle.
      */
     public void randomizeMineLocations() {
-//        if (gameboard == null || mineAmount == null || boxAmount == null) {
-//        }
         Random rand = new Random();
         Ruutu[][] gameboardArray = currentBoard.getGameboard();
 
@@ -55,8 +74,8 @@ public class Logiikka {
             }
         }
     }
-    
-        /**
+
+    /**
      * Täyttää pelilaudan TyhjaRuuduilla ja NumeroRuuduilla loogisesti oikein.
      */
     public void createEmptiesAndNumbers() {
@@ -86,30 +105,9 @@ public class Logiikka {
     }
 
     /**
-     * Avaa Ruudun sijannissa x,y.
-     * 
-     * @param col Kolumni.
-     * @param row Rivi.
-     */
-    public void open(int col, int row) {
-        currentBoard.openRuutu(col, row);
-        int loseIfZero = currentBoard.getGameContinues();
-        System.out.println(loseIfZero);
-        switch (loseIfZero) {
-            case 0:
-                gameEndingString = loseGame();
-                endGame();
-                break;
-            case 1:
-                gameEndingString = winGame();
-                endGame();
-                break;
-        }
-    }
-
-    /**
      * Hävityn pelin viesti.
-     * @return Häviäjälle tervehdys-
+     *
+     * @return Häviäjälle tervehdys.
      */
     public String loseGame() {
         return "Lost the game";
@@ -117,13 +115,15 @@ public class Logiikka {
 
     /**
      * Voitokkaan pelin viesti.
+     *
      * @return Voittajalle tervehdys.
      */
     public String winGame() {
         return "Won the game";
     }
 
-    private void endGame() {
-        System.out.println(gameEndingString);
+    public void setUserInterface(MinesweeperUI userInterface) {
+        this.userInterface = userInterface;
     }
+
 }

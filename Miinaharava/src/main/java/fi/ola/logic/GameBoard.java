@@ -24,7 +24,8 @@ public class GameBoard {
     private Integer boxAmount;
     private double rows;
     private double cols;
-    private int gameContinues;
+    private Logiikka logiikka;
+    private int emptyOrNumeroRuutusLeft;
 
     /**
      * Ei tee mitään erikoista.
@@ -41,28 +42,15 @@ public class GameBoard {
      * @throws RuntimeException Custom made.
      */
     public void newBoard(int boxAmount, int mineAmount) throws RuntimeException {
-        if (availableAmounts.contains(boxAmount)) {
+//        if (availableAmounts.contains(boxAmount)) {
+            this.emptyOrNumeroRuutusLeft = boxAmount - mineAmount;
             this.mineAmount = mineAmount;
             this.boxAmount = boxAmount;
             setUpRowsAndCols();
-            gameboard = new Ruutu[6][6];
-        } else {
-            throw new RuntimeException("Invalid argument. Currently supports integers " + availableAmounts.toString());
-        }
-    }
-
-    /**
-     * Sets availableAmounts from given array.
-     *
-     * @param availableAmountsArray Array containing available amounts.
-     */
-    public void setAvailableAmountsFromArray(Integer[] availableAmountsArray) {
-        this.availableAmountsArray = availableAmountsArray;
-        this.availableAmounts = new HashSet(Arrays.asList(availableAmountsArray));
-    }
-
-    public Set<Integer> getAvailableAmounts() {
-        return availableAmounts;
+            gameboard = new Ruutu[(int) cols][(int) rows];
+//        } else {
+//            throw new RuntimeException("Invalid argument. Currently supports integers " + availableAmounts.toString());
+//        }
     }
 
     /**
@@ -90,6 +78,11 @@ public class GameBoard {
         return neighbours;
     }
 
+    /**
+     * Gets neighbours of Ruutu and checks if there is a MiinaRuutu.
+     * @param ruutu Ruutu who's neighbours you want to check.
+     * @return True if there is a MiinaRuutu.
+     */
     public boolean neighboursContainMiinaRuutu(Ruutu ruutu) {
         ArrayList<Ruutu> naapurit = getNeighbours(ruutu);
         for (Ruutu currentRuutu : naapurit) {
@@ -100,20 +93,8 @@ public class GameBoard {
         return false;
     }
 
-    public void setMineAmount(int mineAmount) {
-        this.mineAmount = mineAmount;
-    }
-
-    public void setGameboard(Ruutu[][] gameboard) {
-        this.gameboard = gameboard;
-    }
-
-    public Ruutu[][] getGameboard() {
-        return gameboard;
-    }
-
     /**
-     * Open Ruutu from a given location.
+     * Open Ruutu from a given location. Legacy.
      *
      * @param col Kolumni.
      * @param row Rivi.
@@ -124,16 +105,8 @@ public class GameBoard {
         return 0;
     }
 
-    public int getMineAmount() {
-        return mineAmount;
-    }
-
-    public int getBoxAmount() {
-        return boxAmount;
-    }
-
     /**
-     * Fetches Ruutu from a given location.
+     * Fetches Ruutu from a given location. Legacy.
      *
      * @param row Rivi.
      * @param col Kolumni.
@@ -151,6 +124,32 @@ public class GameBoard {
         this.cols = Math.sqrt(boxAmount);
     }
 
+    /**
+     * Sets availableAmounts from given array.
+     *
+     * @param availableAmountsArray Array containing available amounts.
+     */
+    public void setAvailableAmountsFromArray(Integer[] availableAmountsArray) {
+        this.availableAmountsArray = availableAmountsArray;
+        this.availableAmounts = new HashSet(Arrays.asList(availableAmountsArray));
+    }
+    
+    public void reduceEmptyOrNumeroRuutuLeft() {
+        this.emptyOrNumeroRuutusLeft--;
+    }
+
+    public Set<Integer> getAvailableAmounts() {
+        return availableAmounts;
+    }
+
+    public int getMineAmount() {
+        return mineAmount;
+    }
+
+    public int getBoxAmount() {
+        return boxAmount;
+    }
+
     public double getCols() {
         return cols;
     }
@@ -159,12 +158,29 @@ public class GameBoard {
         return rows;
     }
 
-    public int getGameContinues() {
-        return gameContinues;
+    public void setLogiikka(Logiikka logiikka) {
+        this.logiikka = logiikka;
     }
 
-    public void setGameContinues(int gameContinues) {
-        this.gameContinues = gameContinues;
+    public Logiikka getLogiikka() {
+        return logiikka;
     }
+
+    public void setMineAmount(int mineAmount) {
+        this.mineAmount = mineAmount;
+    }
+
+    public void setGameboard(Ruutu[][] gameboard) {
+        this.gameboard = gameboard;
+    }
+
+    public Ruutu[][] getGameboard() {
+        return gameboard;
+    }
+
+    public int getEmptyOrNumeroRuutusLeft() {
+        return emptyOrNumeroRuutusLeft;
+    }
+    
 
 }

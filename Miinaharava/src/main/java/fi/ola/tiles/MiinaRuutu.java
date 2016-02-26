@@ -24,9 +24,8 @@ public class MiinaRuutu extends Ruutu {
     @Override
     public void revealUnderneath() {
         super.revealUnderneath();
-        super.gb.setGameContinues(0);
-        System.out.println("Miina");
-        
+        super.color = Color.RED;
+        gb.getLogiikka().endLosingGame();
     }
 
 }

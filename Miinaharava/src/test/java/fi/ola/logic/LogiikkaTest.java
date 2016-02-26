@@ -50,7 +50,7 @@ public class LogiikkaTest {
     @Test
     public void newGameThrowsException() {
         try {
-            logiikka.newGame(10);
+            logiikka.newGame(new int[] {10, 5});
             Assert.fail("New game didn't throw exception");
         } catch (Exception e) {
             Assert.assertTrue(true);
@@ -69,15 +69,14 @@ public class LogiikkaTest {
         assertEquals(txt, logiikka.winGame());
     }
 
-    @Test
-    public void openRuutuEndingGameStringIsCorrectIfMiinaIsOpened() {
-        int col = 1;
-        int row = 5;
-        putMineInLocation(col, row);
-        logiikka.open(col, row);
-        System.out.println(logiikka.currentBoard.getGameContinues());
-        assertEquals(logiikka.loseGame(), logiikka.gameEndingString);
-    }
+//    @Test
+//    public void openRuutuEndingGameStringIsCorrectIfMiinaIsOpened() {
+//        int col = 1;
+//        int row = 5;
+//        putMineInLocation(col, row);
+//        logiikka.open(col, row);
+//        assertEquals(logiikka.loseGame(), logiikka.gameEndingString);
+//    }
         @Test
     public void createEmptiesAndNumbersCreatesCorrectNumbersForNumeroRuutu() {
         utilityFactory.createNewGameBoardFilledWithEmptyRuutu(logiikka);

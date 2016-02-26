@@ -64,16 +64,16 @@ public class GameBoardTest {
         assertEquals("Available amounts differ from expected.", expected, gameboard.getAvailableAmounts());
     }
 
-    @Test
-    public void doesntCreateUnsupportedBoardsize() {
-        try {
-            gameboard.newBoard(10000000, 5);
-            Assert.fail();
-        } catch (Exception e) {
-            String expected = "Invalid argument. Currently supports integers " + gameboard.getAvailableAmounts().toString();
-            assertEquals("Exception message must be correct", expected, e.getMessage());
-        }
-    }
+//    @Test
+//    public void doesntCreateUnsupportedBoardsize() {
+//        try {
+//            gameboard.newBoard(10000000, 5);
+//            Assert.fail();
+//        } catch (Exception e) {
+//            String expected = "Invalid argument. Currently supports integers " + gameboard.getAvailableAmounts().toString();
+//            assertEquals("Exception message must be correct", expected, e.getMessage());
+//        }
+//    }
 
     @Test
     public void randomizeMineLocationsMakesCorrectAmountOfMines() {

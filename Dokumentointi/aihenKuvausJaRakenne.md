@@ -7,3 +7,5 @@ Se ei suostu menem‰‰n oikein p‰in... Tuossa naapurifiless‰ kun aukaisee pdf:ll‰ 
 Tarkennus luokkakaavioon
 
 ![Alt text](dl3luokkakaavio.jpg)
+
+![Alt text](NewGame.pnq "Uuden pelin sekvenssikaavio")

@@ -5,10 +5,9 @@ import fi.ui.RuutuButton;
 import java.awt.Color;
 
 /**
- * Luokka on ylÃ¤kÃ¤site Miina-, Tyhja- ja NumeroRuudulle. Kaikilla Ruudut
- * tietÃ¤vÃ¤t sijaintinsa niihin liitetyssÃ¤ GameBoardissa. Ruutu tietÃ¤Ã¤ myÃ¶s onko
- * se aukaistu ja onko se liputettu. MyÃ¶s tieto minkÃ¤laiseksi RuutuButtonin
- * nappi tulee sitÃ¤ painettaessa lÃ¶ytyy Ruudusta.
+ * Defines Tyhja-, Miina- and NumeroRuutu. Holds information for RuutuButton to
+ * render. Handles Ruutu being flagged and opened so it can't be opened at wrong
+ * times. Knows the location and GameBoard Ruutu is in.
  */
 public class Ruutu {
 
@@ -24,6 +23,7 @@ public class Ruutu {
 
     /**
      * Konstruktori.
+     *
      * @param gb PÃ¶ytÃ¤ johon Ruutu on liitetty.
      * @param row Ruudun rivi.
      * @param col Ruudun kolumni.
@@ -35,22 +35,6 @@ public class Ruutu {
         this.color = Color.BLUE;
     }
 
-    public boolean isFlagged() {
-        return flagged;
-    }
-
-    public void setFlagged(boolean flagged) {
-        this.flagged = flagged;
-    }
-
-    public void setOpened(boolean opened) {
-        this.opened = opened;
-    }
-
-    public boolean isOpened() {
-        return opened;
-    }
-    
     /**
      * Reveals the underneath of Ruutu and acts accordingly.
      */
@@ -59,7 +43,11 @@ public class Ruutu {
             return;
         }
         setOpened(true);
-        ruutuButton.renderOpen();
+        try {
+            ruutuButton.renderOpen();
+        } catch (NullPointerException e) {
+            System.out.println("RuutuButton is null");
+        }
     }
 
     public int getCol() {
@@ -109,5 +97,21 @@ public class Ruutu {
 
     public RuutuButton getRuutuButton() {
         return ruutuButton;
+    }
+
+    public boolean isFlagged() {
+        return flagged;
+    }
+
+    public void setFlagged(boolean flagged) {
+        this.flagged = flagged;
+    }
+
+    public void setOpened(boolean opened) {
+        this.opened = opened;
+    }
+
+    public boolean isOpened() {
+        return opened;
     }
 }

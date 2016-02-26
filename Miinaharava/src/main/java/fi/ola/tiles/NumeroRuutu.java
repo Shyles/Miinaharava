@@ -31,6 +31,17 @@ public class NumeroRuutu extends Ruutu {
         }
         super.toBePrintedOnRuutuButton = "" + mineNeighbours;
     }
+
+    @Override
+    public void revealUnderneath() {
+        super.revealUnderneath();
+        gb.reduceEmptyOrNumeroRuutuLeft();
+        if (gb.getEmptyOrNumeroRuutusLeft() == 0) {
+            gb.getLogiikka().endWinningGame();
+        }
+    }
+    
+    
     
     
 

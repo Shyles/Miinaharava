@@ -3,8 +3,24 @@ package fi.ola.logic;
 import fi.ola.tiles.MiinaRuutu;
 import java.util.ArrayList;
 
+/**
+ * Utilities for tests and debugging.
+ *
+ * @author Olaml
+ */
 public class TestUtils {
 
+    /**
+     * Only creates it.
+     */
+    public TestUtils() {
+    }
+
+    /**
+     * Creates a GameBoard for Logiikka, filled with TyhjaRuutu.
+     *
+     * @param logiikka Gets a GameBoard with TyhjaRuutu.
+     */
     public void createNewGameBoardFilledWithEmptyRuutu(Logiikka logiikka) {
         Integer[] availableAmountsArray = {36};
         GameBoard gb = logiikka.currentBoard;
@@ -17,14 +33,12 @@ public class TestUtils {
         }
     }
 
-    public TestUtils() {
-    }
-
     /**
      * Kovakoodattu testipöydän rakentaminen.
      */
     public void setUpNewTestGameBoard(Logiikka logiikka) {
         GameBoard gb = logiikka.currentBoard;
+        gb.setLogiikka(logiikka);
         Integer[] availableAmountsArray = {36};
         gb.setAvailableAmountsFromArray(availableAmountsArray);
         try {
@@ -36,6 +50,11 @@ public class TestUtils {
         }
     }
 
+    /**
+     * Creates MiinaRuutus in given locations.
+     * @param locations Location is given in pairs, column after row.
+     * @param gb Creates MiinaRuutus here.
+     */
     public void setUpMiinaRuutuInLocations(Integer[] locations, GameBoard gb) {
         for (int i = 0; i < locations.length; i += 2) {
             int row = locations[i];

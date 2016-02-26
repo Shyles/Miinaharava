@@ -11,7 +11,8 @@ public class TyhjaRuutu extends Ruutu {
 
     /**
      * Asettaa ThjaRuudun grafiikat.
-     * @param gb Pöytä.
+     *
+     * @param gb PÃ¶ytÃ¤.
      * @param row Rivi.
      * @param col Kolumni.
      */
@@ -22,11 +23,8 @@ public class TyhjaRuutu extends Ruutu {
     }
 
     @Override
-    public void revealUnderneath(){
-        if (super.isOpened()) {
-            return;
-        }
-        setOpened(true);
+    public void revealUnderneath() {
+        super.revealUnderneath();
         ArrayList<Ruutu> neighbours = gb.getNeighbours(this);
         for (Ruutu ruutu : neighbours) {
             if (!ruutu.isOpened() && !(ruutu instanceof MiinaRuutu)) {
@@ -34,8 +32,10 @@ public class TyhjaRuutu extends Ruutu {
                 ruutuButton.renderOpen();
             }
         }
+        gb.reduceEmptyOrNumeroRuutuLeft();
+        if (gb.getEmptyOrNumeroRuutusLeft() == 0) {
+           gb.getLogiikka().endWinningGame();
+        }
     }
-    
-    
 
 }

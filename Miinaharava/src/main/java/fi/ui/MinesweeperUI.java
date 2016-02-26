@@ -1,23 +1,20 @@
 package fi.ui;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JPanel;
 import fi.ola.logic.GameBoard;
 import fi.ola.logic.Logiikka;
-import fi.ola.logic.TestUtils;
-import fi.ola.tiles.Ruutu;
+import java.awt.Component;
+import java.util.Arrays;
+import javax.swing.JComboBox;
 
 /**
  * Pelin käyttöliittymä.
  */
 public class MinesweeperUI extends javax.swing.JFrame {
 
-    private Logiikka logiikka = new Logiikka();
+    private Logiikka logiikka;
+    private int[] difficulty;
 
     public MinesweeperUI() {
         initComponents();
@@ -26,20 +23,79 @@ public class MinesweeperUI extends javax.swing.JFrame {
     }
 
     private void startNewGame() {
-        TestUtils utilityFactory = new TestUtils();
-        logiikka.currentBoard = new GameBoard();
-        utilityFactory.setUpNewTestGameBoard(logiikka);
-        addGameBoard();
+//        askForDifficulty();
+        setDifficultyFromComboBox(difficultyComboBox);
+        setUpGameBoardAndLogic();
+        addRuutuButtons();
     }
 
-    private void addGameBoard() {
+    private void restartGame() {
+//        askForDifficulty();
+        setDifficultyFromComboBox(gameEndDifficultyComboBox);
+        setUpGameBoardAndLogic();
+        removeRuutuButtonsAndLayOut();
+        addRuutuButtons();
+        lautaPaneeli.revalidate();
+        lautaPaneeli.repaint();
+
+    }
+    
+    public void renderAllRuutuButtonsOpen() {
+        for (Component ruutuButton : lautaPaneeli.getComponents() ) {
+            RuutuButton button = (RuutuButton) ruutuButton;
+            button.renderOpen();
+            button.getRuutu().setOpened(true);
+        }
+    }
+
+    public void popupLostGameDialoque() {
+        gameEndDialog.setAlwaysOnTop(true);
+        gameEndDialog.setModal(true);
+        gameEndDialog.setVisible(true);
+    }
+
+    private void askForDifficulty() {
+        difficultyDialog.setModal(true);
+        difficultyDialog.setVisible(true);
+    }
+
+    private void setUpGameBoardAndLogic() {
+        this.logiikka = new Logiikka();
+        try {
+
+            logiikka.newGame(difficulty);
+            logiikka.setUserInterface(this);
+        } catch (Exception e) {
+            System.out.println( "Tämä tapahtuu");
+            //make do something
+        }
+    }
+
+    public void setDifficultyFromComboBox(JComboBox comboBox) {
+        if (comboBox.getSelectedItem().equals("Easy")) {
+            difficulty = new int[]{36, 6};
+        } else if (comboBox.getSelectedItem().equals("Medium")) {
+            difficulty = new int[]{49, 7};
+        } else if (comboBox.getSelectedItem().equals("Hard")) {
+            difficulty = new int[]{64, 8};
+
+        }
+    }
+
+    private void addRuutuButtons() {
         GameBoard gb = logiikka.currentBoard;
         lautaPaneeli.setLayout(new GridLayout((int) gb.getRows(), (int) gb.getCols(), 1, 1));
         for (int col = 0; col < gb.getCols(); col++) {
             for (int row = 0; row < gb.getRows(); row++) {
                 RuutuButton button = new RuutuButton(gb.getRuutuInLocation(row, col));
-                lautaPaneeli.add(button);
+                lautaPaneeli.add(button, col, row);
             }
+        }
+    }
+
+    private void removeRuutuButtonsAndLayOut() {
+        for (Component current : lautaPaneeli.getComponents()) {
+            lautaPaneeli.remove(current);
         }
     }
 
@@ -60,21 +116,43 @@ public class MinesweeperUI extends javax.swing.JFrame {
     private void initComponents() {
 
         startDialog = new javax.swing.JDialog();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        startDialogNewGameButton = new javax.swing.JButton();
+        greetingLabel = new javax.swing.JLabel();
         quitButton = new javax.swing.JButton();
+        difficultyComboBox = new javax.swing.JComboBox();
+        gameEndDialog = new javax.swing.JDialog();
+        newGameButton2 = new javax.swing.JButton();
+        gameEndCancelButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        gameEndDifficultyComboBox = new javax.swing.JComboBox();
+        difficultyDialog = new javax.swing.JDialog();
+        easyModeButton = new javax.swing.JButton();
+        mediumModeButton = new javax.swing.JButton();
+        hardModeButton = new javax.swing.JButton();
         lautaPaneeli = new javax.swing.JPanel();
+        gameMenuBar = new javax.swing.JMenuBar();
+        gameMenu1 = new javax.swing.JMenu();
+        newGameMenuItem = new javax.swing.JMenuItem();
 
-        startDialog.setMinimumSize(new java.awt.Dimension(500, 500));
-
-        jButton1.setText("New Game");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        startDialog.setLocationByPlatform(true);
+        startDialog.setMinimumSize(new java.awt.Dimension(250, 200));
+        startDialog.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                startDialogWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                startDialogWindowClosing(evt);
             }
         });
 
-        jLabel1.setText("Welcome to MineSweeper!");
+        startDialogNewGameButton.setText("New Game");
+        startDialogNewGameButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startDialogNewGameButtonActionPerformed(evt);
+            }
+        });
+
+        greetingLabel.setText("Welcome to MineSweeper!");
 
         quitButton.setText("Quit");
         quitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -83,6 +161,8 @@ public class MinesweeperUI extends javax.swing.JFrame {
             }
         });
 
+        difficultyComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Easy", "Medium", "Hard"}));
+
         javax.swing.GroupLayout startDialogLayout = new javax.swing.GroupLayout(startDialog.getContentPane());
         startDialog.getContentPane().setLayout(startDialogLayout);
         startDialogLayout.setHorizontalGroup(
@@ -90,59 +170,215 @@ public class MinesweeperUI extends javax.swing.JFrame {
             .addGroup(startDialogLayout.createSequentialGroup()
                 .addGroup(startDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(startDialogLayout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(jButton1)
-                        .addGap(52, 52, 52)
-                        .addComponent(quitButton))
+                        .addContainerGap()
+                        .addComponent(greetingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(startDialogLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(133, Short.MAX_VALUE))
+                        .addGroup(startDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(startDialogLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(difficultyComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, startDialogLayout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(startDialogNewGameButton)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(quitButton)))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         startDialogLayout.setVerticalGroup(
             startDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, startDialogLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addGap(24, 24, 24)
+                .addComponent(greetingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(startDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(startDialogNewGameButton)
                     .addComponent(quitButton))
-                .addGap(116, 116, 116))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(difficultyComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        gameEndDialog.setMinimumSize(new java.awt.Dimension(300, 300));
+
+        newGameButton2.setText("New game");
+        newGameButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newGameButton2ActionPerformed(evt);
+            }
+        });
+
+        gameEndCancelButton.setText("Back");
+        gameEndCancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gameEndCancelButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Mitenkäs saan tämänkin asetettua dynaamisesti");
+
+        gameEndDifficultyComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Easy", "Medium", "Hard"} ));
+
+        javax.swing.GroupLayout gameEndDialogLayout = new javax.swing.GroupLayout(gameEndDialog.getContentPane());
+        gameEndDialog.getContentPane().setLayout(gameEndDialogLayout);
+        gameEndDialogLayout.setHorizontalGroup(
+            gameEndDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gameEndDialogLayout.createSequentialGroup()
+                .addGroup(gameEndDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(gameEndDialogLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(gameEndDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(gameEndDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(gameEndDifficultyComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(newGameButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(gameEndCancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(37, Short.MAX_VALUE))
+        );
+        gameEndDialogLayout.setVerticalGroup(
+            gameEndDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gameEndDialogLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addGroup(gameEndDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(newGameButton2)
+                    .addComponent(gameEndCancelButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(gameEndDifficultyComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        difficultyDialog.setMinimumSize(new java.awt.Dimension(300, 300));
+
+        easyModeButton.setText("Helppo");
+        easyModeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                easyModeButtonActionPerformed(evt);
+            }
+        });
+
+        mediumModeButton.setText("Keskivaikea");
+        mediumModeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mediumModeButtonActionPerformed(evt);
+            }
+        });
+
+        hardModeButton.setText("Vaikea");
+        hardModeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hardModeButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout difficultyDialogLayout = new javax.swing.GroupLayout(difficultyDialog.getContentPane());
+        difficultyDialog.getContentPane().setLayout(difficultyDialogLayout);
+        difficultyDialogLayout.setHorizontalGroup(
+            difficultyDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(difficultyDialogLayout.createSequentialGroup()
+                .addGroup(difficultyDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(difficultyDialogLayout.createSequentialGroup()
+                        .addGap(116, 116, 116)
+                        .addComponent(easyModeButton))
+                    .addGroup(difficultyDialogLayout.createSequentialGroup()
+                        .addGap(107, 107, 107)
+                        .addGroup(difficultyDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(difficultyDialogLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(hardModeButton))
+                            .addComponent(mediumModeButton))))
+                .addContainerGap(196, Short.MAX_VALUE))
+        );
+        difficultyDialogLayout.setVerticalGroup(
+            difficultyDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(difficultyDialogLayout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addComponent(easyModeButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mediumModeButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(hardModeButton)
+                .addContainerGap(126, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lautaPaneeli.setMinimumSize(new java.awt.Dimension(500, 500));
 
+        gameMenu1.setText("File");
+
+        newGameMenuItem.setText("New Game");
+        newGameMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newGameMenuItemActionPerformed(evt);
+            }
+        });
+        gameMenu1.add(newGameMenuItem);
+
+        gameMenuBar.add(gameMenu1);
+
+        setJMenuBar(gameMenuBar);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(462, 462, 462)
-                .addComponent(lautaPaneeli, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+            .addComponent(lautaPaneeli, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 370, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(209, Short.MAX_VALUE)
-                .addComponent(lautaPaneeli, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(lautaPaneeli, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 357, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void startDialogNewGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startDialogNewGameButtonActionPerformed
         startNewGame();
         startDialog.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_startDialogNewGameButtonActionPerformed
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
-
+       System.exit(0);
     }//GEN-LAST:event_quitButtonActionPerformed
+
+    private void newGameButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameButton2ActionPerformed
+        gameEndDialog.dispose();
+        restartGame();
+    }//GEN-LAST:event_newGameButton2ActionPerformed
+
+    private void easyModeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_easyModeButtonActionPerformed
+        difficulty = new int[]{30, 6};
+        difficultyDialog.dispose();
+    }//GEN-LAST:event_easyModeButtonActionPerformed
+
+    private void mediumModeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mediumModeButtonActionPerformed
+        difficulty = new int[]{42, 7};
+        difficultyDialog.dispose();
+    }//GEN-LAST:event_mediumModeButtonActionPerformed
+
+    private void hardModeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hardModeButtonActionPerformed
+        difficulty = new int[]{56, 8};
+        difficultyDialog.dispose();
+    }//GEN-LAST:event_hardModeButtonActionPerformed
+
+    private void newGameMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameMenuItemActionPerformed
+        popupLostGameDialoque();
+    }//GEN-LAST:event_newGameMenuItemActionPerformed
+
+    private void startDialogWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_startDialogWindowClosed
+
+    }//GEN-LAST:event_startDialogWindowClosed
+
+    private void startDialogWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_startDialogWindowClosing
+        System.exit(0);
+    }//GEN-LAST:event_startDialogWindowClosing
+
+    private void gameEndCancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gameEndCancelButtonActionPerformed
+       gameEndDialog.dispose();
+    }//GEN-LAST:event_gameEndCancelButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,11 +416,24 @@ public class MinesweeperUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox difficultyComboBox;
+    private javax.swing.JDialog difficultyDialog;
+    private javax.swing.JButton easyModeButton;
+    private javax.swing.JButton gameEndCancelButton;
+    private javax.swing.JDialog gameEndDialog;
+    private javax.swing.JComboBox gameEndDifficultyComboBox;
+    private javax.swing.JMenu gameMenu1;
+    private javax.swing.JMenuBar gameMenuBar;
+    private javax.swing.JLabel greetingLabel;
+    private javax.swing.JButton hardModeButton;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel lautaPaneeli;
+    private javax.swing.JButton mediumModeButton;
+    private javax.swing.JButton newGameButton2;
+    private javax.swing.JMenuItem newGameMenuItem;
     private javax.swing.JButton quitButton;
     private javax.swing.JDialog startDialog;
+    private javax.swing.JButton startDialogNewGameButton;
     // End of variables declaration//GEN-END:variables
 
 }
