@@ -4,7 +4,6 @@
   <NonVisualComponents>
     <Container class="javax.swing.JDialog" name="startDialog">
       <Properties>
-        <Property name="locationByPlatform" type="boolean" value="true"/>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[250, 200]"/>
         </Property>
@@ -104,7 +103,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                          <Component id="jLabel2" min="-2" pref="295" max="-2" attributes="0"/>
+                          <Component id="gameEndLabel" min="-2" pref="295" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
@@ -124,7 +123,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                  <Component id="jLabel2" min="-2" pref="51" max="-2" attributes="0"/>
+                  <Component id="gameEndLabel" min="-2" pref="51" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="newGameButton2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -154,10 +153,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gameEndCancelButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Mitenk&#xe4;s saan t&#xe4;m&#xe4;nkin asetettua dynaamisesti"/>
-          </Properties>
+        <Component class="javax.swing.JLabel" name="gameEndLabel">
         </Component>
         <Component class="javax.swing.JComboBox" name="gameEndDifficultyComboBox">
           <Properties>

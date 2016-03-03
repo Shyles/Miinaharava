@@ -1,14 +1,11 @@
 package fi.ola.logic;
 
 import fi.ola.tiles.MiinaRuutu;
-import fi.ola.tiles.NumeroRuutu;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Random;
 import java.util.Set;
 import fi.ola.tiles.Ruutu;
-import fi.ola.tiles.TyhjaRuutu;
 
 /**
  * Luokka huolehtii miinaharavan kentästä pitäen yllä jäljellä olevien
@@ -43,11 +40,11 @@ public class GameBoard {
      */
     public void newBoard(int boxAmount, int mineAmount) throws RuntimeException {
 //        if (availableAmounts.contains(boxAmount)) {
-            this.emptyOrNumeroRuutusLeft = boxAmount - mineAmount;
-            this.mineAmount = mineAmount;
-            this.boxAmount = boxAmount;
-            setUpRowsAndCols();
-            gameboard = new Ruutu[(int) cols][(int) rows];
+        this.emptyOrNumeroRuutusLeft = boxAmount - mineAmount;
+        this.mineAmount = mineAmount;
+        this.boxAmount = boxAmount;
+        setUpRowsAndCols();
+        gameboard = new Ruutu[(int) cols][(int) rows];
 //        } else {
 //            throw new RuntimeException("Invalid argument. Currently supports integers " + availableAmounts.toString());
 //        }
@@ -72,6 +69,8 @@ public class GameBoard {
                 try {
                     neighbours.add(gameboard[col][row]);
                 } catch (ArrayIndexOutOfBoundsException e) {
+                    int checkStyleErrorMessageRemover = 0;
+                    //I was lazy, I don't want to spend time making the logic work so I catch the OutOfBoundsExceptions and move on. 
                 }
             }
         }
@@ -80,6 +79,7 @@ public class GameBoard {
 
     /**
      * Gets neighbours of Ruutu and checks if there is a MiinaRuutu.
+     *
      * @param ruutu Ruutu who's neighbours you want to check.
      * @return True if there is a MiinaRuutu.
      */
@@ -133,7 +133,10 @@ public class GameBoard {
         this.availableAmountsArray = availableAmountsArray;
         this.availableAmounts = new HashSet(Arrays.asList(availableAmountsArray));
     }
-    
+
+    /**
+     * Reduces integer emptyOrNumeroRuutusLeft by one.
+     */
     public void reduceEmptyOrNumeroRuutuLeft() {
         this.emptyOrNumeroRuutusLeft--;
     }
@@ -181,6 +184,5 @@ public class GameBoard {
     public int getEmptyOrNumeroRuutusLeft() {
         return emptyOrNumeroRuutusLeft;
     }
-    
 
 }

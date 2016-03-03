@@ -80,6 +80,11 @@ public class Ruutu {
         return toBePrintedOnRuutuButton;
     }
 
+    /**
+     * Sets text on RuutuButton of this.
+     *
+     * @param toBePrintedOnRuutuButton Text to be set on the RuutuButton.
+     */
     public void setToBePrintedOnRuutuButton(String toBePrintedOnRuutuButton) {
         this.toBePrintedOnRuutuButton = toBePrintedOnRuutuButton;
     }
@@ -88,6 +93,9 @@ public class Ruutu {
         return mineNeighbours;
     }
 
+    /**
+     * Overrided in NumeroRuutu.
+     */
     public void setUpTyhjaOrNumeroRuutu() {
     }
 

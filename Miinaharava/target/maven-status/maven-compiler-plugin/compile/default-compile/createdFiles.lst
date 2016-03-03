@@ -1,4 +1,5 @@
 fi\ola\logic\Logiikka.class
+fi\ui\MinesweeperUI$10.class
 fi\ui\MinesweeperUI$7.class
 fi\ui\MinesweeperUI$6.class
 fi\ola\logic\TestUtils.class
@@ -9,14 +10,13 @@ fi\ui\MinesweeperUI$2.class
 fi\ola\logic\GameBoard.class
 fi\ui\MinesweeperUI.class
 fi\ui\MinesweeperUI$4.class
+fi\ola\Main.class
 fi\ui\MinesweeperUI$3.class
-fi\ola\minesweeper\Main.class
 fi\ola\tiles\MiinaRuutu.class
 fi\ola\tiles\TyhjaRuutu.class
 fi\ui\MinesweeperUI$5.class
 fi\ui\MinesweeperUI$8.class
 fi\ui\MinesweeperUI$9.class
 fi\ola\tiles\NumeroRuutu.class
-.netbeans_automatic_build
 fi\ola\tiles\Ruutu.class
 fi\ui\RuutuButton$2.class

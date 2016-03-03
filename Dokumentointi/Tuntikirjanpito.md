@@ -17,3 +17,6 @@
 
 12.2 2h
 * Tein tarvittavat dokumentaatiot, päivitin muutamaa metodia.
+
+3.3 2h
+* Loppuvalmistelut.

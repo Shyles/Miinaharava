@@ -59,13 +59,13 @@ public class LogiikkaTest {
 
     @Test
     public void loseGameReturnsCorrectMessage() {
-        String txt = "Lost the game";
+        String txt = "BOOM";
         assertEquals(txt, logiikka.loseGame());
     }
 
     @Test
     public void winGameReturnsCorrectMessage() {
-        String txt = "Won the game";
+        String txt = "Gongratulations, you just beat the game!";
         assertEquals(txt, logiikka.winGame());
     }
 

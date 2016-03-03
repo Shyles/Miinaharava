@@ -34,7 +34,7 @@ public class TyhjaRuutu extends Ruutu {
         }
         gb.reduceEmptyOrNumeroRuutuLeft();
         if (gb.getEmptyOrNumeroRuutusLeft() == 0) {
-           gb.getLogiikka().endWinningGame();
+            gb.getLogiikka().endWinningGame();
         }
     }
 

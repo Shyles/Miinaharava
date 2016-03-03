@@ -1,7 +1,6 @@
 package fi.ola.logic;
 
 import fi.ola.tiles.MiinaRuutu;
-import java.util.ArrayList;
 
 /**
  * Utilities for tests and debugging.
@@ -35,6 +34,8 @@ public class TestUtils {
 
     /**
      * Kovakoodattu testipöydän rakentaminen.
+     *
+     * @param logiikka Logiikka to be set up.
      */
     public void setUpNewTestGameBoard(Logiikka logiikka) {
         GameBoard gb = logiikka.currentBoard;
@@ -52,6 +53,7 @@ public class TestUtils {
 
     /**
      * Creates MiinaRuutus in given locations.
+     *
      * @param locations Location is given in pairs, column after row.
      * @param gb Creates MiinaRuutus here.
      */

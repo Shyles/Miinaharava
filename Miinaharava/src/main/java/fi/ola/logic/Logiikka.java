@@ -29,22 +29,22 @@ public class Logiikka {
      */
     public void endLosingGame() {
         userInterface.renderAllRuutuButtonsOpen();
-        userInterface.popupLostGameDialoque();
+        userInterface.popupLostGameDialoque(loseGame());
     }
 
-    
     /**
      * Tells interface to render a won game.
      */
     public void endWinningGame() {
         userInterface.renderAllRuutuButtonsOpen();
-        userInterface.popupLostGameDialoque();
+        userInterface.popupLostGameDialoque(winGame());
     }
 
     /**
      * Luo uuden pöydän.
      *
-     * @param boxesAndMines Ruutujen ja MiinaRuutujen määrä, indeksissä 0 on Ruutujen kokonaismäärä.
+     * @param boxesAndMines Ruutujen ja MiinaRuutujen määrä, indeksissä 0 on
+     * Ruutujen kokonaismäärä.
      * @throws Exception Kaikki.
      */
     public void newGame(int[] boxesAndMines) throws Exception {
@@ -110,7 +110,7 @@ public class Logiikka {
      * @return Häviäjälle tervehdys.
      */
     public String loseGame() {
-        return "Lost the game";
+        return "BOOM";
     }
 
     /**
@@ -119,7 +119,7 @@ public class Logiikka {
      * @return Voittajalle tervehdys.
      */
     public String winGame() {
-        return "Won the game";
+        return "Gongratulations, you just beat the game!";
     }
 
     public void setUserInterface(MinesweeperUI userInterface) {

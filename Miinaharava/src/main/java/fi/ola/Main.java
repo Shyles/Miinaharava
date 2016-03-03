@@ -1,4 +1,4 @@
-package fi.ola.minesweeper;
+package fi.ola;
 
 import fi.ola.logic.GameBoard;
 import fi.ola.logic.Logiikka;

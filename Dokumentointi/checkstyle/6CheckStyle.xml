@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="5.7">
+<file name="C:\Users\Olaml\Desktop\Koulu\Miinaharava\Miinaharava\src\main\java\fi\ola\logic\GameBoard.java">
+</file>
+<file name="C:\Users\Olaml\Desktop\Koulu\Miinaharava\Miinaharava\src\main\java\fi\ola\logic\Logiikka.java">
+</file>
+<file name="C:\Users\Olaml\Desktop\Koulu\Miinaharava\Miinaharava\src\main\java\fi\ola\logic\TestUtils.java">
+<error line="64" severity="error" message="method call child at indentation level 12 not at correct indentation, 16" source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+
+Ja t‰m‰h‰n tosiaan saa haistaa piyk‰n, ei varmasti ole linell‰ 64 mit‰‰n v‰‰r‰‰ sisennyst‰ Testutilseissa.
+
+
+</file>
+<file name="C:\Users\Olaml\Desktop\Koulu\Miinaharava\Miinaharava\src\main\java\fi\ola\Main.java">
+</file>
+<file name="C:\Users\Olaml\Desktop\Koulu\Miinaharava\Miinaharava\src\main\java\fi\ola\tiles\MiinaRuutu.java">
+</file>
+<file name="C:\Users\Olaml\Desktop\Koulu\Miinaharava\Miinaharava\src\main\java\fi\ola\tiles\NumeroRuutu.java">
+</file>
+<file name="C:\Users\Olaml\Desktop\Koulu\Miinaharava\Miinaharava\src\main\java\fi\ola\tiles\Ruutu.java">
+</file>
+<file name="C:\Users\Olaml\Desktop\Koulu\Miinaharava\Miinaharava\src\main\java\fi\ola\tiles\TyhjaRuutu.java">
+</file>
+<file name="C:\Users\Olaml\Desktop\Koulu\Miinaharava\Miinaharava\src\main\java\fi\ui\MinesweeperUI.java">
+</file>
+<file name="C:\Users\Olaml\Desktop\Koulu\Miinaharava\Miinaharava\src\main\java\fi\ui\RuutuButton.java">
+</file>
+</checkstyle>

@@ -36,10 +36,10 @@ public class RuutuTest {
     }
 
     @Test
-    public void revealUnderneathdDoesNothingIfFlagged() {
-        ruutu.setFlagged(true);
+    public void revealUnderneathdDoesNothingIfOpened() {
+        ruutu.setOpened(true);
         ruutu.revealUnderneath();
-        assertEquals("revealUnderneath set opened even if flagged",ruutu.isOpened(), false);
+        assertEquals("revealUnderneath set opened even if flagged",ruutu.isOpened(), true);
     }
     
     @Test

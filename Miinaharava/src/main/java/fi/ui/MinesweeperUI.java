@@ -5,8 +5,8 @@ import java.awt.GridLayout;
 import fi.ola.logic.GameBoard;
 import fi.ola.logic.Logiikka;
 import java.awt.Component;
-import java.util.Arrays;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 
 /**
  * Pelin käyttöliittymä.
@@ -18,8 +18,12 @@ public class MinesweeperUI extends javax.swing.JFrame {
 
     public MinesweeperUI() {
         initComponents();
+        startDialog.setLocationRelativeTo(this);
         startDialog.setModal(true);
         startDialog.setVisible(true);
+        this.setLocationRelativeTo(null);
+        this.setTitle("Miinaharava by Ola");
+        
     }
 
     private void startNewGame() {
@@ -33,7 +37,7 @@ public class MinesweeperUI extends javax.swing.JFrame {
 //        askForDifficulty();
         setDifficultyFromComboBox(gameEndDifficultyComboBox);
         setUpGameBoardAndLogic();
-        removeRuutuButtonsAndLayOut();
+        removeRuutuButtons();
         addRuutuButtons();
         lautaPaneeli.revalidate();
         lautaPaneeli.repaint();
@@ -48,7 +52,9 @@ public class MinesweeperUI extends javax.swing.JFrame {
         }
     }
 
-    public void popupLostGameDialoque() {
+    public void popupLostGameDialoque(String endGameString) {
+        gameEndDialog.setLocationRelativeTo(this);
+        gameEndLabel.setText(endGameString);
         gameEndDialog.setAlwaysOnTop(true);
         gameEndDialog.setModal(true);
         gameEndDialog.setVisible(true);
@@ -93,7 +99,7 @@ public class MinesweeperUI extends javax.swing.JFrame {
         }
     }
 
-    private void removeRuutuButtonsAndLayOut() {
+    private void removeRuutuButtons() {
         for (Component current : lautaPaneeli.getComponents()) {
             lautaPaneeli.remove(current);
         }
@@ -123,7 +129,7 @@ public class MinesweeperUI extends javax.swing.JFrame {
         gameEndDialog = new javax.swing.JDialog();
         newGameButton2 = new javax.swing.JButton();
         gameEndCancelButton = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        gameEndLabel = new javax.swing.JLabel();
         gameEndDifficultyComboBox = new javax.swing.JComboBox();
         difficultyDialog = new javax.swing.JDialog();
         easyModeButton = new javax.swing.JButton();
@@ -134,7 +140,6 @@ public class MinesweeperUI extends javax.swing.JFrame {
         gameMenu1 = new javax.swing.JMenu();
         newGameMenuItem = new javax.swing.JMenuItem();
 
-        startDialog.setLocationByPlatform(true);
         startDialog.setMinimumSize(new java.awt.Dimension(250, 200));
         startDialog.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -214,8 +219,6 @@ public class MinesweeperUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Mitenkäs saan tämänkin asetettua dynaamisesti");
-
         gameEndDifficultyComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Easy", "Medium", "Hard"} ));
 
         javax.swing.GroupLayout gameEndDialogLayout = new javax.swing.GroupLayout(gameEndDialog.getContentPane());
@@ -226,7 +229,7 @@ public class MinesweeperUI extends javax.swing.JFrame {
                 .addGroup(gameEndDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(gameEndDialogLayout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(gameEndLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(gameEndDialogLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(gameEndDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -240,7 +243,7 @@ public class MinesweeperUI extends javax.swing.JFrame {
             gameEndDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gameEndDialogLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(gameEndLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
                 .addGroup(gameEndDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newGameButton2)
@@ -365,7 +368,7 @@ public class MinesweeperUI extends javax.swing.JFrame {
     }//GEN-LAST:event_hardModeButtonActionPerformed
 
     private void newGameMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameMenuItemActionPerformed
-        popupLostGameDialoque();
+        popupLostGameDialoque("Would you like to start a new game?");
     }//GEN-LAST:event_newGameMenuItemActionPerformed
 
     private void startDialogWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_startDialogWindowClosed
@@ -422,11 +425,11 @@ public class MinesweeperUI extends javax.swing.JFrame {
     private javax.swing.JButton gameEndCancelButton;
     private javax.swing.JDialog gameEndDialog;
     private javax.swing.JComboBox gameEndDifficultyComboBox;
+    private javax.swing.JLabel gameEndLabel;
     private javax.swing.JMenu gameMenu1;
     private javax.swing.JMenuBar gameMenuBar;
     private javax.swing.JLabel greetingLabel;
     private javax.swing.JButton hardModeButton;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel lautaPaneeli;
     private javax.swing.JButton mediumModeButton;
     private javax.swing.JButton newGameButton2;
